@@ -7,5 +7,5 @@ export default function Page() {
       <Input placeholder="Type something..." />
       <Button>Submit</Button>
     </>
-  )
+  );
 }
