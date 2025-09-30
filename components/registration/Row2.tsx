@@ -1,5 +1,6 @@
 "use client";
 import { Control } from "react-hook-form";
+
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -37,7 +38,7 @@ export function Row2({ control }: Row2Props) {
           <FormItem>
             <FormLabel>Date of Birth</FormLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Input placeholder="select date" type="date" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -51,7 +52,7 @@ export function Row2({ control }: Row2Props) {
           <FormItem>
             <FormLabel>Phone Number</FormLabel>
             <FormControl>
-              <Input type="tel" {...field} />
+              <Input type="number" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

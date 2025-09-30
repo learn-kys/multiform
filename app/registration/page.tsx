@@ -42,6 +42,7 @@ export default function Page() {
   }, [jobTitle, form]);
 
   const onSubmit = (data: FormData) => {
+    // eslint-disable-next-line no-console
     console.log("Form Data:", data);
   };
 
