@@ -1,5 +1,6 @@
 "use client";
 import { Control } from "react-hook-form";
+
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -41,6 +42,9 @@ export function Row1({ control }: Row1Props) {
             <FormControl>
               <Input type="text" {...field} />
             </FormControl>
+            <FormDescription className="hidden lg:block">
+              &nbsp;
+            </FormDescription>
             <FormMessage />
           </FormItem>
         )}
@@ -55,6 +59,9 @@ export function Row1({ control }: Row1Props) {
             <FormControl>
               <Input type="text" {...field} />
             </FormControl>
+            <FormDescription className="hidden lg:block">
+              &nbsp;
+            </FormDescription>
             <FormMessage />
           </FormItem>
         )}
