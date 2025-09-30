@@ -1,55 +1,60 @@
 "use client";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import React from "react";
 
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Row1 } from "@/components/registration/Row1";
+import { Row2 } from "@/components/registration/Row2";
+import { Row3 } from "@/components/registration/Row3";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
 
-type FormData = {
-  firstName: string;
-  middleName?: string;
-  lastName: string;
-  fatherFullName: string;
-  dateOfBirth: string;
-  phoneNumber: string;
-  email: string;
-  jobTitle: "developer" | "designer" | "marketer";
-  jobId: string;
-};
+const formSchema = z.object({
+  firstName: z.string().min(1, { message: "First name is required" }),
+  middleName: z.string().optional(),
+  lastName: z.string().min(1, { message: "Last name is required" }),
+  fatherFullName: z
+    .string()
+    .min(1, { message: "Father full name is required" }),
+  dateOfBirth: z.string().min(1, { message: "Date of birth is required" }),
+  phoneNumber: z.string().min(1, { message: "Phone number is required" }),
+  email: z.string().email(),
+  jobTitle: z.string().min(1, { message: "Job title is required" }),
+  jobId: z.string().optional(),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export default function Page() {
-  const {
-    register,
-    control,
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<FormData>({
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      jobTitle: undefined,
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      fatherFullName: "",
+      dateOfBirth: "",
+      phoneNumber: "",
+      email: "",
+      jobTitle: "",
       jobId: "",
     },
   });
 
-  // auto-update jobId when jobTitle changes
-  const jobTitle = watch("jobTitle");
+  const jobTitle = form.watch("jobTitle");
 
-  if (jobTitle) {
-    const map: Record<string, string> = {
-      developer: "1",
-      designer: "2",
-      marketer: "3",
-    };
+  React.useEffect(() => {
+    if (jobTitle) {
+      const map: Record<string, string> = {
+        developer: "1",
+        designer: "2",
+        marketer: "3",
+      };
 
-    setValue("jobId", map[jobTitle] ?? "");
-  }
+      form.setValue("jobId", map[jobTitle] ?? "");
+    }
+  }, [jobTitle, form]);
 
   const onSubmit = (data: FormData) => {
     console.log("Form Data:", data);
@@ -57,108 +62,20 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6">
-      <form
-        className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full rounded-2xl"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="firstName">First Name</Label>
-          <Input
-            id="firstName"
-            type="text"
-            {...register("firstName", { required: true })}
-          />
-          {errors.firstName && (
-            <span className="text-red-500 text-sm">Required</span>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="middleName">Middle Name</Label>
-          <Input id="middleName" type="text" {...register("middleName")} />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="lastName">Last Name</Label>
-          <Input
-            id="lastName"
-            type="text"
-            {...register("lastName", { required: true })}
-          />
-          {errors.lastName && (
-            <span className="text-red-500 text-sm">Required</span>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="fatherFullName">Father Full Name</Label>
-          <Input
-            id="fatherFullName"
-            type="text"
-            {...register("fatherFullName", { required: true })}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="dateOfBirth">Date of Birth</Label>
-          <Input
-            id="dateOfBirth"
-            type="date"
-            {...register("dateOfBirth", { required: true })}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="phoneNumber">Phone Number</Label>
-          <Input
-            id="phoneNumber"
-            type="number"
-            {...register("phoneNumber", { required: true })}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            {...register("email", { required: true })}
-          />
-        </div>
-
-        {/* Controlled Select */}
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="jobTitle">Job Title</Label>
-          <Controller
-            control={control}
-            name="jobTitle"
-            render={({ field }) => (
-              <Select value={field.value} onValueChange={field.onChange}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a job title" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="developer">Developer</SelectItem>
-                  <SelectItem value="designer">Designer</SelectItem>
-                  <SelectItem value="marketer">Marketer</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="jobId">Job ID</Label>
-          <Input disabled id="jobId" type="text" {...register("jobId")} />
-        </div>
-
-        <button
-          className="col-span-full bg-blue-600 text-white rounded-lg px-4 py-2"
-          type="submit"
+      <Form {...form}>
+        <form
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-7xl w-full rounded-2xl"
+          onSubmit={form.handleSubmit(onSubmit)}
         >
-          Submit
-        </button>
-      </form>
+          <Row1 control={form.control} />
+          <Row2 control={form.control} />
+          <Row3 control={form.control} />
+
+          <Button className="" type="submit">
+            Submit
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 }
