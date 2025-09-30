@@ -21,13 +21,16 @@ export function Row1({ control }: Row1Props) {
       <FormField
         control={control}
         name="firstName"
-        render={({ field }) => (
+        render={({ field, fieldState }) => (
           <FormItem>
             <FormLabel>First Name</FormLabel>
             <FormControl>
               <Input type="text" {...field} />
             </FormControl>
-            <FormDescription>should be at your addhar name</FormDescription>
+            {/* we do not want to show description if there is an error */}
+            {!fieldState.error && (
+              <FormDescription>should be at your addhar name</FormDescription>
+            )}
             <FormMessage />
           </FormItem>
         )}
@@ -36,15 +39,18 @@ export function Row1({ control }: Row1Props) {
       <FormField
         control={control}
         name="middleName"
-        render={({ field }) => (
+        render={({ field, fieldState }) => (
           <FormItem>
             <FormLabel>Middle Name</FormLabel>
             <FormControl>
               <Input type="text" {...field} />
             </FormControl>
-            <FormDescription className="hidden lg:block">
-              &nbsp;
-            </FormDescription>
+            {/* we do not want to show description(empty space) if there is an error */}
+            {!fieldState.error && (
+              <FormDescription className="hidden lg:block">
+                &nbsp;
+              </FormDescription>
+            )}
             <FormMessage />
           </FormItem>
         )}
@@ -53,15 +59,18 @@ export function Row1({ control }: Row1Props) {
       <FormField
         control={control}
         name="lastName"
-        render={({ field }) => (
+        render={({ field, fieldState }) => (
           <FormItem>
             <FormLabel>Last Name</FormLabel>
             <FormControl>
               <Input type="text" {...field} />
             </FormControl>
-            <FormDescription className="hidden lg:block">
-              &nbsp;
-            </FormDescription>
+            {/* we do not want to show description(empty space) if there is an error */}
+            {!fieldState.error && (
+              <FormDescription className="hidden lg:block">
+                &nbsp;
+              </FormDescription>
+            )}
             <FormMessage />
           </FormItem>
         )}
