@@ -6,7 +6,7 @@ export const formSchema = z.object({
   fatherFullName: z
     .string()
     .min(1, { message: "Father full name is required" }),
-  dateOfBirth: z.string().min(1, { message: "Date of birth is required" }),
+  dateOfBirth: z.string({ message: "Date of birth is required" }),
   phoneNumber: z.string().min(1, { message: "Phone number is required" }),
   email: z.string().email(),
   jobTitle: z.string().min(1, { message: "Job title is required" }),
