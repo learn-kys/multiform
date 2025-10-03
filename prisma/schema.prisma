@@ -21,7 +21,7 @@ model User {
   lastName          String?
   fatherFullName    String?
   dateOfBirth       DateTime
-  phoneNumber       String
+  phoneNumber       String    @unique
   email             String    @unique
   jobTitle          String
   jobId             String

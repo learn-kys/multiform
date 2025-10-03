@@ -11,15 +11,9 @@ export async function userRegistration(formData: FormData) {
   if (!result.success) {
     const firstIssue = result.error.issues[0];
 
-    return {
-      success: false,
-      error: {
-        path: firstIssue.path, // array showing the field's path, e.g. ['fatherFullName']
-        message: firstIssue.message, // the custom or default error message
-        code: firstIssue.code, // the error code (e.g., 'too_small', 'invalid_type')
-      },
-    };
+    throw new Error(firstIssue.message);
   }
+
   try {
     const newUser = await prisma.user.create({
       data: {
@@ -29,19 +23,22 @@ export async function userRegistration(formData: FormData) {
       },
     });
 
-    return { success: true, userId: newUser.id, userPassword: newUser };
+    return { userId: newUser.id, userPassword: newUser.password };
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {
-        return {
-          success: false,
-          error: {
-            message: "User with this email already exists",
-          },
-        };
+        const target = (error.meta?.target as string[]) || [];
+
+        if (target.includes("email")) {
+          throw new Error("This email Id already in use");
+        }
+
+        if (target.includes("phoneNumber")) {
+          throw new Error("This phone number already exists");
+        }
       }
     }
 
-    return { success: false, error: { message: "Something went wrong" } };
+    throw new Error("Something went wrong");
   }
 }

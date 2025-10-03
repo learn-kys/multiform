@@ -2,6 +2,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
+import { toast } from "sonner";
 
 import { Row1 } from "@/components/registration/Row1";
 import { Row2 } from "@/components/registration/Row2";
@@ -43,11 +44,22 @@ export default function Page() {
   }, [jobTitle, form]);
 
   const onSubmit = async (data: FormData) => {
-    const result = await userRegistration(data);
+    const promise = userRegistration(data);
 
-    if (!result.success) {
-      alert(result.error?.message);
-    }
+    toast.promise(promise, {
+      loading: "Loading...",
+      success: () => ({
+        message: "Registration successful",
+      }),
+      error: (err) => ({
+        message: err.message,
+        duration: Infinity,
+        cancel: {
+          label: "Close",
+          onClick: () => {},
+        },
+      }),
+    });
   };
 
   return (
