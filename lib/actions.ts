@@ -6,6 +6,7 @@ import { formSchema, FormData } from "./types";
 import { generatePassword } from "./utils";
 
 export async function userRegistration(formData: FormData) {
+  // await new Promise((resolve) => setTimeout(resolve, 10000));
   const result = formSchema.safeParse(formData);
 
   if (!result.success) {
