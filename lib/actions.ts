@@ -24,7 +24,7 @@ export async function userRegistration(formData: FormData) {
       },
     });
 
-    return { userId: newUser.id, userPassword: newUser.password };
+    return { userId: newUser.id, password: newUser.password };
   } catch (error) {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       if (error.code === "P2002") {

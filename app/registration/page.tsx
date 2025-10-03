@@ -13,8 +13,14 @@ import { Form } from "@/components/ui/form";
 import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/types";
 import { userRegistration } from "@/lib/actions";
+import { RegistrationDialog } from "@/components/registration/RegistrationDialog";
 
 export default function Page() {
+  const [isAlertOpen, setIsAlertOpen] = React.useState(false);
+  const [credentials, setCredentials] = React.useState<{
+    userId?: string;
+    password?: string;
+  }>({});
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,32 +51,17 @@ export default function Page() {
   }, [jobTitle, form]);
 
   const onSubmit = async (data: FormData) => {
-    // try {
-    //   const promise = userRegistration(data);
-    //   toast.promise(promise, {
-    //     loading: "Loading...",
-    //     success: () => ({
-    //       message: "Registration successful",
-    //     }),
-    //     error: (err) => ({
-    //       message: err.message,
-    //       duration: Infinity,
-    //       action: {
-    //         label: "Close",
-    //         onClick: () => {}, // close toast
-    //       },
-    //     }),
-    //   });
-    //   // Ensure RHF tracks submission
-    //   await promise;
-    // } catch (err) {
-    //   // eslint-disable-next-line no-console
-    //   console.log(err);
-    // }
-
     try {
-      await userRegistration(data);
-      toast.success("Registration successful");
+      const result = await userRegistration(data);
+
+      if (result) {
+        setCredentials({
+          userId: result.userId,
+          password: result.password,
+        });
+        setIsAlertOpen(true);
+        // toast.success("Registration successful");
+      }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unexpected error", {
         duration: Infinity,
@@ -83,57 +74,66 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-6xl">
-        {/* Header Section */}
-        <div className="text-center mb-8 space-y-2">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-            Registration Form
-          </h1>
-        </div>
-
-        {/* Form Card */}
-        <div className="border rounded-lg shadow-sm bg-card">
-          <div className="p-6 sm:p-8 lg:p-10">
-            <Form {...form}>
-              <form
-                className="space-y-8"
-                onSubmit={form.handleSubmit(onSubmit)}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <Row1 control={form.control} />
-                  <Row2 control={form.control} />
-                  <Row3 control={form.control} />
-                </div>
-
-                {/* Submit Button */}
-                <div className="flex justify-center pt-2">
-                  <Button
-                    className="w-full sm:w-auto sm:min-w-[200px]"
-                    disabled={form.formState.isSubmitting}
-                    size="lg"
-                    type="submit"
-                  >
-                    {form.formState.isSubmitting ? (
-                      <div className="flex items-center">
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Submitting...
-                      </div>
-                    ) : (
-                      "Submit Registration"
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </Form>
+    <>
+      <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div className="w-full max-w-6xl">
+          {/* Header Section */}
+          <div className="text-center mb-8 space-y-2">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
+              Registration Form
+            </h1>
           </div>
-        </div>
 
-        {/* Footer Note */}
-        <p className="text-center text-xs text-muted-foreground mt-6">
-          All fields marked with an asterisk (*) are required
-        </p>
+          {/* Form Card */}
+          <div className="border rounded-lg shadow-sm bg-card">
+            <div className="p-6 sm:p-8 lg:p-10">
+              <Form {...form}>
+                <form
+                  className="space-y-8"
+                  onSubmit={form.handleSubmit(onSubmit)}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <Row1 control={form.control} />
+                    <Row2 control={form.control} />
+                    <Row3 control={form.control} />
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="flex justify-center pt-2">
+                    <Button
+                      className="w-full sm:w-auto sm:min-w-[200px]"
+                      disabled={form.formState.isSubmitting}
+                      size="lg"
+                      type="submit"
+                    >
+                      {form.formState.isSubmitting ? (
+                        <div className="flex items-center">
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Submitting...
+                        </div>
+                      ) : (
+                        "Submit Registration"
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+              .
+            </div>
+          </div>
+
+          {/* Footer Note */}
+          <p className="text-center text-xs text-muted-foreground mt-6">
+            All fields marked with an asterisk (*) are required
+          </p>
+        </div>
       </div>
-    </div>
+      <RegistrationDialog
+        isOpen={isAlertOpen}
+        password={credentials.password}
+        userId={credentials.userId}
+        onClose={() => setIsAlertOpen(false)}
+      />
+    </>
   );
 }
