@@ -124,5 +124,10 @@
   [role = "button"]{
     cursor: pointer;
   }
+
+  input::placeholder,
+  textarea::placeholder {
+    text-transform: none !important;
+  }
 }
 

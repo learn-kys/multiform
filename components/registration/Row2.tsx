@@ -25,7 +25,7 @@ export function Row2({ control }: Row2Props) {
           <FormItem>
             <FormLabel>Father Full Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input className="uppercase" type="text" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

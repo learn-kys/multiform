@@ -25,11 +25,11 @@ export function Row1({ control }: Row1Props) {
           <FormItem>
             <FormLabel>First Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input className="uppercase" type="text" {...field} />
             </FormControl>
             {/* we do not want to show description if there is an error */}
             {!fieldState.error && (
-              <FormDescription>should be at your addhar name</FormDescription>
+              <FormDescription>Same as your Aadhar Name</FormDescription>
             )}
             <FormMessage />
           </FormItem>
@@ -43,7 +43,7 @@ export function Row1({ control }: Row1Props) {
           <FormItem>
             <FormLabel>Middle Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input className="uppercase" type="text" {...field} />
             </FormControl>
             {/* we do not want to show description(empty space) if there is an error */}
             {!fieldState.error && (
@@ -63,7 +63,7 @@ export function Row1({ control }: Row1Props) {
           <FormItem>
             <FormLabel>Last Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input className="uppercase" type="text" {...field} />
             </FormControl>
             {/* we do not want to show description(empty space) if there is an error */}
             {!fieldState.error && (

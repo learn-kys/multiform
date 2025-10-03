@@ -31,7 +31,7 @@ export function Row3({ control }: Row3Props) {
           <FormItem>
             <FormLabel>Email</FormLabel>
             <FormControl>
-              <Input type="email" {...field} />
+              <Input className="lowercase" type="email" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -47,7 +47,10 @@ export function Row3({ control }: Row3Props) {
             <Select value={field.value} onValueChange={field.onChange}>
               <FormControl>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a job title" />
+                  <SelectValue
+                    className="uppercase placeholder:normal-case"
+                    placeholder="Select a job title"
+                  />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
