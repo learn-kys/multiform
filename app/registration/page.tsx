@@ -118,7 +118,6 @@ export default function Page() {
                   </div>
                 </form>
               </Form>
-              .
             </div>
           </div>
 

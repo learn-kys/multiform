@@ -85,7 +85,7 @@ Do not share them with anyone.`,
               User ID
             </label>
             <div className="flex items-center gap-2">
-              <div className="flex-1 rounded-lg border bg-muted/50 p-3 font-mono text-sm">
+              <div className="flex-1 rounded-lg border bg-muted/50 p-2 font-mono text-sm">
                 {userId}
               </div>
               <button
@@ -107,7 +107,7 @@ Do not share them with anyone.`,
               Password
             </label>
             <div className="flex items-center gap-2">
-              <div className="flex-1 rounded-lg border bg-muted/50 p-3 font-mono text-sm">
+              <div className="flex-1 rounded-lg border bg-muted/50 p-2  font-mono text-sm">
                 {password}
               </div>
               <button
@@ -126,16 +126,16 @@ Do not share them with anyone.`,
         </div>
 
         <DialogFooter className="flex-col sm:flex-row gap-2">
-          <Button
-            className="w-full sm:w-auto"
-            variant="outline"
-            onClick={handleDownload}
-          >
-            <Download className="h-4 w-4 mr-2" />
+          <Button className="w-full sm:w-auto" onClick={handleDownload}>
+            <Download className="h-4 w-4" />
             Download Credentials
           </Button>
           {/* <DialogClose asChild> */}
-          <Button className="w-full sm:w-auto" onClick={handleGoToLogin}>
+          <Button
+            className="w-full sm:w-auto"
+            variant={"outline"}
+            onClick={handleGoToLogin}
+          >
             Go to Login
           </Button>
           {/* </DialogClose> */}
