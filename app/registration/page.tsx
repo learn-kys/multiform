@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/types";
+import { userRegistration } from "@/lib/actions";
 
 export default function Page() {
   const form = useForm<FormData>({
@@ -41,9 +42,8 @@ export default function Page() {
     }
   }, [jobTitle, form]);
 
-  const onSubmit = (data: FormData) => {
-    // eslint-disable-next-line no-console
-    console.log("Form Data:", data);
+  const onSubmit = async (data: FormData) => {
+    await userRegistration(data);
   };
 
   return (
