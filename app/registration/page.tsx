@@ -43,7 +43,11 @@ export default function Page() {
   }, [jobTitle, form]);
 
   const onSubmit = async (data: FormData) => {
-    await userRegistration(data);
+    const result = await userRegistration(data);
+
+    if (!result.success) {
+      alert(result.error?.message);
+    }
   };
 
   return (

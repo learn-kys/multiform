@@ -1,6 +1,9 @@
 "use server";
+import { Prisma } from "@prisma/client";
+
 import prisma from "./db";
 import { formSchema, FormData } from "./types";
+import { generatePassword } from "./utils";
 
 export async function userRegistration(formData: FormData) {
   const result = formSchema.safeParse(formData);
@@ -17,14 +20,28 @@ export async function userRegistration(formData: FormData) {
       },
     };
   }
+  try {
+    const newUser = await prisma.user.create({
+      data: {
+        ...result.data,
+        dateOfBirth: new Date(result.data.dateOfBirth),
+        password: generatePassword(),
+      },
+    });
 
-  const newUser = await prisma.user.create({
-    data: {
-      dateof,
-    },
-  });
+    return { success: true, userId: newUser.id, userPassword: newUser };
+  } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2002") {
+        return {
+          success: false,
+          error: {
+            message: "User with this email already exists",
+          },
+        };
+      }
+    }
 
-  // console.log("Converted Date for Prisma:", dateOfBirth);
-
-  return { success: true };
+    return { success: false, error: { message: "Something went wrong" } };
+  }
 }
