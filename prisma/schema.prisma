@@ -14,19 +14,73 @@ datasource db {
 }
 
 // user registration
+
 model User {
-  id                String    @id @default(cuid()) @map("_id")
-  firstName         String
-  middleName        String?
-  lastName          String?
-  fatherFullName    String?
-  dateOfBirth       DateTime
-  phoneNumber       String    @unique
-  email             String    @unique
-  jobTitle          String
-  jobId             String
-  password          String
-  emailVerified     Boolean   @default(false)
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @default(now()) @updatedAt
+  id             String    @id @default(cuid()) @map("_id")
+  firstName      String
+  middleName     String?
+  lastName       String?
+  fatherFullName String?
+  dateOfBirth    DateTime
+  phoneNumber    String    @unique
+  email          String    @unique
+  jobTitle       String
+  jobId          String
+  password       String
+  emailVerified  Boolean   @default(false)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now()) @updatedAt
+  name           String
+  image          String?
+  sessions       Session[]
+  accounts       Account[]
+
+  fatherName String
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @map("_id")
+  expiresAt DateTime
+  token     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id @map("_id")
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id @map("_id")
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("verification")
 }

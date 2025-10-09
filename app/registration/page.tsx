@@ -2,7 +2,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
-import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
 import { Row1 } from "@/components/registration/Row1";
@@ -12,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/types";
-import { userRegistration } from "@/lib/actions";
 import { RegistrationDialog } from "@/components/registration/RegistrationDialog";
 
 export default function Page() {
@@ -51,6 +49,7 @@ export default function Page() {
   }, [jobTitle, form]);
 
   const onSubmit = async (data: FormData) => {
+    /*
     try {
       const result = await userRegistration(data);
 
@@ -71,6 +70,9 @@ export default function Page() {
         },
       });
     }
+      */
+
+    await authClient.emailAndPassword.register(data);
   };
 
   return (

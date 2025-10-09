@@ -61,7 +61,7 @@ Do not share them with anyone.`,
 
   const handleGoToLogin = () => {
     // onClose();
-    window.open("/login", "_blank");
+        window.open("/login", "_self");
   };
 
   return (
