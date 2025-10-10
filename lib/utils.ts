@@ -17,3 +17,10 @@ export function generatePassword() {
 
   return password;
 }
+
+export function toTitleCase(str: string) {
+  return str
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join(" ");
+}
