@@ -65,3 +65,10 @@ export const formSchema = z.object({
 });
 
 export type FormData = z.infer<typeof formSchema>;
+
+export const signInSchema = z.object({
+  email: z.email({ message: "Invalid email address" }).trim().toLowerCase(),
+  password: z.string().min(1, { message: "Password is required" }),
+});
+
+export type SignInFormData = z.infer<typeof signInSchema>;

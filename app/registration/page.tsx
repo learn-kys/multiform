@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 import { Row1 } from "@/components/registration/Row1";
 import { Row2 } from "@/components/registration/Row2";
@@ -74,7 +75,18 @@ export default function Page() {
     }
       */
 
-    const res = await authClient.signUp.email(
+    // data parsing to ensure correct data
+    const verifiedData = formSchema.safeParse(data);
+
+    if (!verifiedData.success) {
+      const firstIssue = verifiedData.error.issues[0];
+
+      toast.error(firstIssue.message);
+
+      return;
+    }
+    // signup api call provided by better auth
+    await authClient.signUp.email(
       {
         ...data,
         name: [data.firstName, data.middleName, data.lastName]
@@ -86,12 +98,10 @@ export default function Page() {
       },
       {
         onSuccess: () => {
-          alert("Signup successfull");
+          toast.success("Signup Successful");
         },
       },
     );
-
-    console.log(res);
   };
 
   return (

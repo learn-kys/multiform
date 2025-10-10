@@ -39,7 +39,12 @@ export default function RootLayout({
           defaultTheme="system"
         >
           {children}
-          <Toaster richColors position="bottom-right" theme="system" />
+          <Toaster
+            invert
+            richColors
+            position="bottom-center"
+            swipeDirections={["left", "right"]}
+          />
         </ThemeProvider>
       </body>
     </html>
