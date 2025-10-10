@@ -55,6 +55,9 @@ export default function Page() {
         router.push("/");
         toast.success("Sign in Successful");
       },
+      onError: (error) => {
+        toast.error(error.error.message || "Something went wrong");
+      },
     });
   };
 
