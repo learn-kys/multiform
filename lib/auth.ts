@@ -34,7 +34,7 @@ export const auth = betterAuth({
         type: "date",
         required: true,
       },
-      mobileNumber: {
+      phoneNumber: {
         type: "string",
         required: true,
       },

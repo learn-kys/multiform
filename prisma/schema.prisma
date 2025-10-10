@@ -26,7 +26,7 @@ model User {
   lastName       String
   fatherFullName String
   dateOfBirth    DateTime
-  mobileNumber   String
+  phoneNumber    String
   jobTitle       String
   jobId          String
   sessions       Session[]

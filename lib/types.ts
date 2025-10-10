@@ -62,10 +62,6 @@ export const formSchema = z.object({
     .max(50, { message: "Job title must be at most 50 characters long" }),
 
   jobId: z.string().trim().min(1, { message: "Job ID is required" }),
-
-  password: z
-    .string()
-    .min(8, { message: "Password must be at least 8 characters long" }),
 });
 
 export type FormData = z.infer<typeof formSchema>;

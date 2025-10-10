@@ -13,6 +13,7 @@ import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/types";
 import { RegistrationDialog } from "@/components/registration/RegistrationDialog";
 import { authClient } from "@/lib/auth-client";
+import { generatePassword } from "@/lib/utils";
 
 export default function Page() {
   const [isAlertOpen, setIsAlertOpen] = React.useState(false);
@@ -32,7 +33,6 @@ export default function Page() {
       email: "",
       jobTitle: "",
       jobId: "",
-      password: "1234567890",
     },
   });
 
@@ -73,17 +73,23 @@ export default function Page() {
       });
     }
       */
-    console.log(data);
-    data.password = "selfjo080776";
 
-    const res = await authClient.signUp.email({
-      ...data,
-      name: `${data.firstName} ${data.lastName}`,
-      mobileNumber: data.phoneNumber,
-      dateOfBirth: new Date(data.dateOfBirth),
+    const res = await authClient.signUp.email(
+      {
+        ...data,
+        name: [data.firstName, data.middleName, data.lastName]
+          .filter(Boolean)
+          .join(" "),
 
-      callbackURL: "/",
-    });
+        dateOfBirth: new Date(data.dateOfBirth),
+        password: generatePassword(),
+      },
+      {
+        onSuccess: () => {
+          alert("Signup successfull");
+        },
+      },
+    );
 
     console.log(res);
   };
