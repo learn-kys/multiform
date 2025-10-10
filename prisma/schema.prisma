@@ -13,30 +13,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// user registration
-
 model User {
-  id             String    @id @default(cuid()) @map("_id")
-  firstName      String
-  middleName     String?
-  lastName       String?
-  fatherFullName String?
-  dateOfBirth    DateTime
-  phoneNumber    String    @unique
-  email          String    @unique
-  jobTitle       String
-  jobId          String
-  password       String
+  id             String    @id @map("_id")
+  name           String
+  email          String
   emailVerified  Boolean   @default(false)
+  image          String?
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @default(now()) @updatedAt
-  name           String
-  image          String?
+  firstName      String
+  middleName     String?
+  lastName       String
+  fatherFullName String
+  dateOfBirth    DateTime
+  mobileNumber   String
+  jobTitle       String
+  jobId          String
   sessions       Session[]
   accounts       Account[]
 
-  fatherName String
-
+  @@unique([email])
   @@map("user")
 }
 
