@@ -37,6 +37,7 @@ export const auth = betterAuth({
       phoneNumber: {
         type: "string",
         required: true,
+        // unique: true,
       },
       jobTitle: {
         type: "string",
@@ -48,12 +49,55 @@ export const auth = betterAuth({
       },
     },
   },
-  secret: process.env.BETTER_AUTH_SECRET!,
-  // session: {
-  //   cookieCache: {
-  //     enabled: true,
-  //     maxAge: 60 * 5, // 5 minutes
+  // databaseHooks: {
+  //   user: {
+  //     create: {
+  //       before: async (user) => {
+  //         // Check if phone number already exists
+  //         if (user.phoneNumber) {
+  //           const existingUser = await prisma.user.findFirst({
+  //             where: {
+  //               phoneNumber: user.phoneNumber,
+  //             },
+  //           });
+
+  //           if (existingUser) {
+  //             throw new APIError("BAD_REQUEST", {
+  //               message: "User with this phone number already exists.",
+  //             });
+  //           }
+  //         }
+
+  //         return {
+  //           data: user,
+  //         };
+  //       },
+  //     },
+  //     update: {
+  //       before: async (user) => {
+  //         // Check if phone number already exists (excluding the current user)
+  //         if (user.phoneNumber) {
+  //           const existingUser = await prisma.user.findFirst({
+  //             where: {
+  //               phoneNumber: user.phoneNumber,
+  //               id: { not: user.id },
+  //             },
+  //           });
+
+  //           if (existingUser) {
+  //             throw new APIError("BAD_REQUEST", {
+  //               message: "User with this phone number already exists.",
+  //             });
+  //           }
+  //         }
+
+  //         return {
+  //           data: user,
+  //         };
+  //       },
+  //     },
   //   },
   // },
+  secret: process.env.BETTER_AUTH_SECRET!,
   plugins: [nextCookies()],
 });

@@ -119,9 +119,8 @@ export default function Page() {
         </CardContent>
         <CardFooter className="text-sm">
           <p>
-            Don't have an account?{" "}
             <Link className="underline" href="/registration">
-              Sign up
+              Registration
             </Link>
           </p>
         </CardFooter>

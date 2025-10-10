@@ -26,11 +26,12 @@ model User {
   lastName       String
   fatherFullName String
   dateOfBirth    DateTime
-  phoneNumber    String
   jobTitle       String
   jobId          String
+  phoneNumber    String
   sessions       Session[]
   accounts       Account[]
+
 
   @@unique([email])
   @@map("user")
