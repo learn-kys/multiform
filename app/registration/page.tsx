@@ -85,6 +85,9 @@ export default function Page() {
 
       return;
     }
+    // generate password
+    const pass = generatePassword();
+
     // signup api call provided by better auth
     await authClient.signUp.email(
       {
@@ -94,11 +97,11 @@ export default function Page() {
           .join(" "),
 
         dateOfBirth: new Date(data.dateOfBirth),
-        password: generatePassword(),
+        password: pass,
       },
       {
         onSuccess: () => {
-          toast.success("Signup Successful");
+          toast.success("Signup Successful", { description: `pass:${pass}` });
         },
       },
     );

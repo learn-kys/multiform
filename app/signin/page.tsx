@@ -5,6 +5,7 @@ import React from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -36,6 +37,8 @@ export default function Page() {
     },
   });
 
+  const router = useRouter();
+
   const onSubmit = async (data: SignInFormData) => {
     const verifiedData = signInSchema.safeParse(data);
 
@@ -49,6 +52,7 @@ export default function Page() {
 
     await authClient.signIn.email(verifiedData.data, {
       onSuccess: () => {
+        router.push("/");
         toast.success("Sign in Successful");
       },
     });
