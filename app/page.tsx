@@ -6,9 +6,14 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { toTitleCase } from "@/lib/utils";
+import { GenericLoader } from "@/components/genericLoader";
 
 export default function Page() {
   const { data: session, isPending: loading } = authClient.useSession();
+
+  if (loading) {
+    return <GenericLoader className="size-8" />;
+  }
 
   return (
     <div>
