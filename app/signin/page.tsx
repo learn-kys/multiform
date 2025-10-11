@@ -53,7 +53,7 @@ export default function Page() {
     await authClient.signIn.email(verifiedData.data, {
       onSuccess: () => {
         router.push("/");
-        toast.success("Sign in Successful");
+        toast.success("Sign In Successful");
       },
       onError: (error) => {
         toast.error(error.error.message || "Something went wrong");

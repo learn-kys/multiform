@@ -101,6 +101,8 @@ export default function Page() {
       {
         onSuccess: () => {
           toast.success("Signup Successful", { description: `pass:${pass}` });
+          // Redirect to verify page with email
+          window.location.href = `/verify?email=${encodeURIComponent(data.email)}`;
         },
         onError: (error) => {
           toast.error(error.error.message || "Something went wrong");
