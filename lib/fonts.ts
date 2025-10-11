@@ -1,7 +1,7 @@
-import { Monomakh } from "next/font/google";
+import { Domine } from "next/font/google";
 
-export const monomakh = Monomakh({
+export const domine = Domine({
   subsets: ["latin"],
-  variable: "--font-monomakh",
-  weight: ["400"],
+  variable: "--font-domine",
+  weight: ["400", "500", "600", "700"],
 });

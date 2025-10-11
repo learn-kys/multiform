@@ -17,7 +17,7 @@ export default function Page() {
           <Button>
             <Link href={"/signin"}>SignIn / Sign Up</Link>
           </Button>
-          <Button onClick={() => toast.success("this is sucess message how ?")}>
+          <Button onClick={() => toast.success("This is sucess message")}>
             success
           </Button>
           <Button onClick={() => toast.info("this is info message how ?")}>
@@ -31,7 +31,7 @@ export default function Page() {
           <Button onClick={() => toast.error("this is error message how ?")}>
             error
           </Button>
-          <p className="font-monomakh">lore sdflaf Tljsdfla Ssdflaj Tsdfaf</p>
+          <p className="font-serif">User registration sucessful</p>
         </>
       ) : (
         <>

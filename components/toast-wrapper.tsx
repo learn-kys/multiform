@@ -39,7 +39,7 @@ export default function ToasterWrapper() {
       swipeDirections={["right", "left"]}
       theme={oppositeTheme}
       toastOptions={{
-        className: "font-monomakh",
+        className: "font-serif",
       }}
     />
   );
