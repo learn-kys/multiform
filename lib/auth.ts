@@ -3,6 +3,8 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 
 import prisma from "@/lib/db";
+import { sendPasswordResetEmail } from "@/lib/email/send-password-reset-email";
+import { sendEmailVerificationEmail } from "@/lib/email/email-verification";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -20,10 +22,10 @@ export const auth = betterAuth({
   emailVerification: {
     autoSignInAfterVerification: true,
     sendOnSignUp: true,
-    sendVerificationEmail: async ({user, url}) => {
-      await sendVerificationEmail({ user, url });
-    }
-  }
+    sendVerificationEmail: async ({ user, url }) => {
+      await sendEmailVerificationEmail({ user, url });
+    },
+  },
   user: {
     additionalFields: {
       firstName: {
