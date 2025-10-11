@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 import { Row1 } from "@/components/registration/Row1";
 import { Row2 } from "@/components/registration/Row2";
@@ -21,6 +22,8 @@ export default function Page() {
     userId?: string;
     password?: string;
   }>({});
+  const router = useRouter();
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -94,12 +97,13 @@ export default function Page() {
           .join(" "),
 
         dateOfBirth: new Date(data.dateOfBirth),
+        callbackURL: `/verify?email=${encodeURIComponent(data.email)}`,
       },
       {
         onSuccess: () => {
-          toast.success("Signup Successful");
           // Redirect to verify page with email
-          window.location.href = `/verify?email=${encodeURIComponent(data.email)}`;
+          router.push(`/verify?email=${encodeURIComponent(data.email)}`);
+          toast.success("Signup Successful");
         },
         onError: (error) => {
           toast.error(error.error.message || "Something went wrong");
