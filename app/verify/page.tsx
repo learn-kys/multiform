@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 import { InvalidLink } from "./_components/InvalidLink";
 import { VerifyView } from "./_components/VerifyView";
@@ -23,12 +23,14 @@ export default function Page() {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
 
-  if (isPending) {
-    <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (session?.user.emailVerified) {
+      router.push("/");
+    }
+  }, [session, router]);
 
-  if (session?.user.emailVerified) {
-    // router.push("/");
+  if (isPending) {
+    return <div>Loading...</div>;
   }
 
   return (

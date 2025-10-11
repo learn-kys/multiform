@@ -1,6 +1,8 @@
 "use client";
 import { Control } from "react-hook-form";
 
+import { PasswordInput } from "../ui/password-input";
+
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -72,6 +74,20 @@ export function Row3({ control }: Row3Props) {
             <FormLabel>Job ID</FormLabel>
             <FormControl>
               <Input disabled type="text" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+
+      <FormField
+        control={control}
+        name="password"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Password</FormLabel>
+            <FormControl>
+              <PasswordInput {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

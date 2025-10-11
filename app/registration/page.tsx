@@ -14,7 +14,6 @@ import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/types";
 import { RegistrationDialog } from "@/components/registration/RegistrationDialog";
 import { authClient } from "@/lib/auth-client";
-import { generatePassword } from "@/lib/utils";
 
 export default function Page() {
   const [isAlertOpen, setIsAlertOpen] = React.useState(false);
@@ -34,6 +33,7 @@ export default function Page() {
       email: "",
       jobTitle: "",
       jobId: "",
+      password: "",
     },
   });
 
@@ -85,8 +85,6 @@ export default function Page() {
 
       return;
     }
-    // generate password
-    const pass = generatePassword();
 
     await authClient.signUp.email(
       {
@@ -96,11 +94,10 @@ export default function Page() {
           .join(" "),
 
         dateOfBirth: new Date(data.dateOfBirth),
-        password: pass,
       },
       {
         onSuccess: () => {
-          toast.success("Signup Successful", { description: `pass:${pass}` });
+          toast.success("Signup Successful");
           // Redirect to verify page with email
           window.location.href = `/verify?email=${encodeURIComponent(data.email)}`;
         },
