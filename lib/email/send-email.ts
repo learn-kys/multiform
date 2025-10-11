@@ -13,7 +13,7 @@ export function sendEmail({
   html: string;
   text: string;
 }) {
-  resend.emails.send({
+  return resend.emails.send({
     from: "onboarding@resend.dev",
     to: to,
     subject: subject,
