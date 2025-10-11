@@ -3,7 +3,6 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useState, useEffect } from "react";
 import { CheckCircle2 } from "lucide-react";
-import Link from "next/link";
 
 import { InvalidLink } from "./_components/InvalidLink";
 import { VerifyView } from "./_components/VerifyView";
@@ -16,7 +15,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { GenericLoader } from "@/components/genericLoader";
 
 function EmailVerified() {
@@ -26,6 +24,7 @@ function EmailVerified() {
   useEffect(() => {
     if (countdown <= 0) {
       router.push("/");
+
       return;
     }
 

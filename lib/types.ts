@@ -77,3 +77,9 @@ export const signInSchema = z.object({
 });
 
 export type SignInFormData = z.infer<typeof signInSchema>;
+
+export const forgetPasswordSchema = z.object({
+  email: z.email({ message: "Invalid email address" }).trim().toLowerCase(),
+});
+
+export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
