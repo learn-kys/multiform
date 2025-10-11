@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
@@ -12,9 +13,26 @@ export default function Page() {
   return (
     <div>
       {session == null ? (
-        <Button>
-          <Link href={"/signin"}>SignIn / Sign Up</Link>
-        </Button>
+        <>
+          <Button>
+            <Link href={"/signin"}>SignIn / Sign Up</Link>
+          </Button>
+          <Button onClick={() => toast.success("this is sucess message how ?")}>
+            success
+          </Button>
+          <Button onClick={() => toast.info("this is info message how ?")}>
+            info
+          </Button>
+          <Button
+            onClick={() => toast.warning("this is warning message how ?")}
+          >
+            warning
+          </Button>
+          <Button onClick={() => toast.error("this is error message how ?")}>
+            error
+          </Button>
+          <p className="font-monomakh">lore sdflaf Tljsdfla Ssdflaj Tsdfaf</p>
+        </>
       ) : (
         <>
           <h1>welcome {toTitleCase(session.user.name)}</h1>

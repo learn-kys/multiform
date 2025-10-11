@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
+import ToasterWrapper from "@/components/toast-wrapper";
+import { monomakh } from "@/lib/fonts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${monomakh.variable} font-sans antialiased`}
       >
         <ThemeProvider
           disableTransitionOnChange
@@ -39,12 +40,7 @@ export default function RootLayout({
           defaultTheme="system"
         >
           {children}
-          <Toaster
-            invert
-            richColors
-            position="bottom-center"
-            swipeDirections={["left", "right"]}
-          />
+          <ToasterWrapper />
         </ThemeProvider>
       </body>
     </html>
