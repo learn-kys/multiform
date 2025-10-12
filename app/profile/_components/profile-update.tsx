@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const profileUpdateSchema = z.object({
   firstName: z
@@ -68,6 +69,8 @@ export function ProfileUpdateForm({ user }: { user: User }) {
       phoneNumber: user.phoneNumber,
     },
   });
+
+  const { isDirty } = form.formState;
 
   const onSubmit = (data: ProfileUpdateSchema) => {
     console.log(data);
@@ -147,6 +150,8 @@ export function ProfileUpdateForm({ user }: { user: User }) {
             </FormItem>
           )}
         />
+
+        {isDirty && <Button type="submit">Update Profile</Button>}
       </form>
     </Form>
   );
