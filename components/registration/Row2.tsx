@@ -10,9 +10,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { FormData } from "@/lib/types";
 
 interface Row2Props {
-  control: Control<any>;
+  control: Control<FormData>;
 }
 
 export function Row2({ control }: Row2Props) {

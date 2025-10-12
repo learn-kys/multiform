@@ -18,9 +18,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { FormData } from "@/lib/types";
 
 interface Row3Props {
-  control: Control<any>;
+  control: Control<FormData>;
 }
 
 export function Row3({ control }: Row3Props) {
