@@ -9,6 +9,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -84,6 +85,21 @@ export function ProfileUpdateForm({ user }: { user: User }) {
               <FormControl>
                 <Input type="text" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="middleName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Middle Name</FormLabel>
+              <FormControl>
+                <Input type="text" {...field} value={field.value ?? ""} />
+              </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
