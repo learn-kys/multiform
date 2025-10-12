@@ -97,7 +97,7 @@ export function Row2({ control }: Row2Props) {
           <FormItem>
             <FormLabel>Phone Number</FormLabel>
             <FormControl>
-              <Input type="number" {...field} />
+              <Input type="tel" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

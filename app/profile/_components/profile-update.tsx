@@ -90,14 +90,58 @@ export function ProfileUpdateForm({ user }: { user: User }) {
           )}
         />
 
+        {user.middleName && (
+          <FormField
+            control={form.control}
+            name="middleName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Middle Name</FormLabel>
+                <FormControl>
+                  <Input type="text" {...field} value={field.value ?? ""} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+
         <FormField
           control={form.control}
-          name="middleName"
+          name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Middle Name</FormLabel>
+              <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input type="text" {...field} value={field.value ?? ""} />
+                <Input type="text" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input type="email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="phoneNumber"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input type="tel" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
