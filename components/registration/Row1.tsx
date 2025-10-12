@@ -2,6 +2,7 @@
 import { Control } from "react-hook-form";
 
 import { Input } from "@/components/ui/input";
+import { FormData } from "@/lib/types";
 import {
   FormControl,
   FormDescription,
@@ -12,7 +13,7 @@ import {
 } from "@/components/ui/form";
 
 interface Row1Props {
-  control: Control<any>;
+  control: Control<FormData>;
 }
 
 export function Row1({ control }: Row1Props) {
@@ -43,7 +44,12 @@ export function Row1({ control }: Row1Props) {
           <FormItem>
             <FormLabel>Middle Name</FormLabel>
             <FormControl>
-              <Input className="uppercase" type="text" {...field} />
+              <Input
+                className="uppercase"
+                type="text"
+                {...field}
+                value={field.value ?? ""} // input field can have null
+              />
             </FormControl>
             {/* we do not want to show description(empty space) if there is an error */}
             {!fieldState.error && (

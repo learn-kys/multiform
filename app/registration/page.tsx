@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { Row1 } from "@/components/registration/Row1";
 import { Row2 } from "@/components/registration/Row2";
@@ -13,15 +13,14 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { FormData } from "@/lib/types";
 import { formSchema } from "@/lib/types";
-import { RegistrationDialog } from "@/components/registration/RegistrationDialog";
 import { authClient } from "@/lib/auth-client";
 
 export default function Page() {
-  const [isAlertOpen, setIsAlertOpen] = React.useState(false);
-  const [credentials, setCredentials] = React.useState<{
-    userId?: string;
-    password?: string;
-  }>({});
+  // const [isAlertOpen, setIsAlertOpen] = React.useState(false);
+  // const [credentials, setCredentials] = React.useState<{
+  //   // userId?: string;
+  //   // password?: string;
+  // }>({});
   const router = useRouter();
 
   const form = useForm<FormData>({
@@ -55,29 +54,6 @@ export default function Page() {
   }, [jobTitle, form]);
 
   const onSubmit = async (data: FormData) => {
-    /*
-    try {
-      const result = await userRegistration(data);
-
-      if (result) {
-        setCredentials({
-          userId: result.userId,
-          password: result.password,
-        });
-        setIsAlertOpen(true);
-        // toast.success("Registration successful");
-      }
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unexpected error", {
-        duration: Infinity,
-        cancel: {
-          label: "Close",
-          onClick: () => {},
-        },
-      });
-    }
-      */
-
     // data parsing to ensure correct data
     const verifiedData = formSchema.safeParse(data);
 
@@ -88,14 +64,12 @@ export default function Page() {
 
       return;
     }
-
     await authClient.signUp.email(
       {
         ...data,
         name: [data.firstName, data.middleName, data.lastName]
           .filter(Boolean)
           .join(" "),
-
         dateOfBirth: new Date(data.dateOfBirth),
         callbackURL: `/verify?email=${encodeURIComponent(data.email)}`,
       },
@@ -166,12 +140,12 @@ export default function Page() {
           </p>
         </div>
       </div>
-      <RegistrationDialog
+      {/* <RegistrationDialog
         isOpen={isAlertOpen}
         password={credentials.password}
         userId={credentials.userId}
         onClose={() => setIsAlertOpen(false)}
-      />
+      /> */}
     </>
   );
 }
