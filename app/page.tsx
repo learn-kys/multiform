@@ -42,13 +42,15 @@ export default function Page() {
         <>
           <h1>welcome {toTitleCase(session.user.name)}</h1>
           <p>email {session.user.email} </p>
-          <p>password:AT#I6N63uFr3</p>
           <Button
             size={"sm"}
             variant={"destructive"}
             onClick={() => authClient.signOut()}
           >
             Sign out
+          </Button>
+          <Button>
+            <Link href={"/profile"}>Profile</Link>
           </Button>
         </>
       )}

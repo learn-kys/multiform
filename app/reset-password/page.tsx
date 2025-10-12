@@ -68,7 +68,7 @@ export default function ResetPasswordPage() {
         },
         onSuccess: () => {
           toast.success("Password has been reset successfully.");
-          router.push("/login");
+          router.push("/signin");
         },
       },
     );
