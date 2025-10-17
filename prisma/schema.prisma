@@ -31,6 +31,8 @@ model User {
   phoneNumber    String
   sessions       Session[]
   accounts       Account[]
+  CandidatePersonalInfo CandidatePersonalInfo[]
+  CandidateEducationInfo CandidateEducationInfo[]
 
 
   @@unique([email])
@@ -80,4 +82,73 @@ model Verification {
   updatedAt  DateTime @default(now()) @updatedAt
 
   @@map("verification")
+}
+
+model CandidatePersonalInfo {
+  id                      String           @id @map("_id")
+  userId                  String
+  user                    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gender                  String
+  isMarried               Boolean
+  motherFullName          String
+  nationality             String
+  domicileOfState         String
+  domicileCertificateIssuingAuthority String
+  domicileCertificateNumber String
+  domicileCertificateIssueDate DateTime
+  haveDisability          Boolean
+  markOfVisibleIdentification String
+  havePanCard             Boolean
+  haveVoterId             Boolean
+  CaddressLine1           String
+  CaddressLine2           String?
+  Ccountry                String
+  CaddressCityOrDistrict  String
+  CaddressState           String
+  CaddressPincode         String
+  PaddressLine1           String
+  PaddressLine2           String?
+  Pcountry                String
+  PaddressCityOrDistrict  String
+  PaddressState           String
+  PaddressPincode         String
+  isCsameAsP              Boolean
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @default(now()) @updatedAt
+}
+
+model CandidateEducationInfo {
+  id                      String           @id @map("_id")
+  userId                  String
+  user                    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // 10th details
+  tenth_board             String
+  tenth_schoolOrInstitute String
+  tenth_isPercentageOrCGPAOrGrade String
+  tenth_marksObtained     String
+  tenth_maximumMarks      String
+  tenth_percentageOrCGPAOrGrade String
+  tenth_passingYear       Int
+  tenth_Division          String
+
+  // 12th details
+  twelfth_board             String
+  twelfth_schoolOrInstitute String
+  twelfth_isPercentageOrCGPAOrGrade String
+  twelfth_marksObtained     String
+  twelfth_maximumMarks      String
+  twelfth_percentageOrCGPAOrGrade String
+  twelfth_passingYear       Int
+  twelfth_Division          String
+
+  // graduation details
+  graduation_qualificationDegree String
+  graduation_institute String
+  graduation_subject String
+  graduation_monthAndYearPassing String
+  graduation_isPercentageOrCGPAOrGrade String
+  graduation_marksObtained String
+  graduation_maximumMarks String
+  graduation_percentageOrCGPAOrGrade String
+
 }
