@@ -69,8 +69,6 @@ export const formSchema = z.object({
     .min(8, { message: "Password too short" }),
 });
 
-export type FormData = z.infer<typeof formSchema>;
-
 export const signInSchema = z.object({
   email: z.email({ message: "Invalid email address" }).trim().toLowerCase(),
   password: z.string().min(1, { message: "Password is required" }).min(8, {
@@ -78,13 +76,9 @@ export const signInSchema = z.object({
   }),
 });
 
-export type SignInFormData = z.infer<typeof signInSchema>;
-
 export const forgetPasswordSchema = z.object({
   email: z.email({ message: "Invalid email address" }).trim().toLowerCase(),
 });
-
-export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
 
 export const resetPasswordSchema = z
   .object({
@@ -100,3 +94,6 @@ export const resetPasswordSchema = z
   });
 
 export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
+export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
+export type SignInFormData = z.infer<typeof signInSchema>;
+export type FormData = z.infer<typeof formSchema>;
