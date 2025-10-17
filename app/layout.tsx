@@ -9,12 +9,12 @@ import ToasterWrapper from "@/components/toast-wrapper";
 import { domine } from "@/lib/fonts";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -30,6 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
+      <head>
+        <script
+          async
+          crossOrigin="anonymous"
+          src="https://tweakcn.com/live-preview.min.js"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${domine.variable} font-sans antialiased`}
       >

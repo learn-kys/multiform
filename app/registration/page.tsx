@@ -92,9 +92,7 @@ export default function Page() {
         <div className="w-full max-w-6xl">
           {/* Header Section */}
           <div className="text-center mb-8 space-y-2">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-              Registration Form
-            </h1>
+            <h3>Registration Form</h3>
           </div>
 
           {/* Form Card */}

@@ -19,10 +19,9 @@ export default function AlertComponent() {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-          <AlertDialogDescription>
-            Take a moment to review the details provided to ensure you
-            understand the implications.
+          <AlertDialogTitle className="">Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription className="font-mono">
+            This action cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
