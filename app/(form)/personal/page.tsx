@@ -1,6 +1,8 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import PersonalForm from "./_components/personal-form";
+
 import { auth } from "@/lib/auth";
 
 export default async function Page() {
@@ -10,5 +12,9 @@ export default async function Page() {
     redirect("/signin");
   }
 
-  return <div>Hello world</div>;
+  return (
+    <div>
+      <PersonalForm user={session.user} />
+    </div>
+  );
 }
