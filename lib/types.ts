@@ -93,7 +93,7 @@ export const resetPasswordSchema = z
     path: ["confirmPassword"],
   });
 
-export const CandidatePersonalSchema = z.object({
+export const candidatePersonalInfoSubmissionchema = z.object({
   firstName: z
     .string()
     .trim()
@@ -164,6 +164,9 @@ export const CandidatePersonalSchema = z.object({
   }),
 });
 
+export type CandidatePersonalInfoSubmissionSchema = z.infer<
+  typeof candidatePersonalInfoSubmissionchema
+>;
 export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
 export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
 export type SignInFormData = z.infer<typeof signInSchema>;
