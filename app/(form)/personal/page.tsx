@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-import PersonalForm from "./_components/personal-form";
+import { CandidatePersonalInfoSubmissionForm } from "./_components/personal-form";
 
 import { auth } from "@/lib/auth";
 
@@ -14,7 +14,7 @@ export default async function Page() {
 
   return (
     <div>
-      <PersonalForm user={session.user} />
+      <CandidatePersonalInfoSubmissionForm user={session.user} />
     </div>
   );
 }

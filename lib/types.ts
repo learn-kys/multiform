@@ -158,6 +158,10 @@ export const CandidatePersonalSchema = z.object({
   isMarried: z.boolean({
     error: "Marital status is required",
   }),
+
+  nationality: z.string({
+    error: "Nationality is required",
+  }),
 });
 
 export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;

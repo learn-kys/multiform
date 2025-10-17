@@ -4,6 +4,10 @@ import type { auth } from "@/lib/auth";
 export type AuthSession = Awaited<ReturnType<typeof auth.api.getSession>>;
 export type AuthUser = NonNullable<AuthSession>["user"]; // it simply remove null
 
-export default function PersonalForm({ user }: { user: AuthUser }) {
+export function CandidatePersonalInfoSubmissionForm({
+  user,
+}: {
+  user: AuthUser;
+}) {
   return <div>{user.dateOfBirth.toDateString()}</div>;
 }
