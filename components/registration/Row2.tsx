@@ -24,7 +24,7 @@ export function Row2({ control }: Row2Props) {
         name="fatherFullName"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Father Full Name</FormLabel>
+            <FormLabel requiredLable>Father Full Name</FormLabel>
             <FormControl>
               <Input className="uppercase" type="text" {...field} />
             </FormControl>
@@ -81,7 +81,7 @@ export function Row2({ control }: Row2Props) {
         name="dateOfBirth"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Date of Birth</FormLabel>
+            <FormLabel requiredLable>Date of Birth</FormLabel>
             <FormControl>
               <Input placeholder="select date" type="date" {...field} />
             </FormControl>
@@ -95,7 +95,7 @@ export function Row2({ control }: Row2Props) {
         name="phoneNumber"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Phone Number</FormLabel>
+            <FormLabel requiredLable>Phone Number</FormLabel>
             <FormControl>
               <Input type="tel" {...field} />
             </FormControl>

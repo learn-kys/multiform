@@ -89,6 +89,36 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function FormLabel({
   className,
+  requiredLable,
+  children,
+  ...props
+}: React.ComponentProps<typeof LabelPrimitive.Root> & {
+  requiredLable?: boolean;
+}) {
+  const { error, formItemId } = useFormField();
+
+  return (
+    <Label
+      className={cn(
+        "data-[error=true]:text-destructive inline-flex items-baseline gap-0.5",
+        className,
+      )}
+      data-error={!!error}
+      data-slot="form-label"
+      htmlFor={formItemId}
+      {...props}
+    >
+      <span className="leading-none">{children}</span>
+      {requiredLable && <span className="form-required">*</span>}
+    </Label>
+  );
+}
+
+/* 
+// default formLable:
+
+function FormLabel({
+  className,
   ...props
 }: React.ComponentProps<typeof LabelPrimitive.Root>) {
   const { error, formItemId } = useFormField();
@@ -103,6 +133,8 @@ function FormLabel({
     />
   );
 }
+
+*/
 
 function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
   const { error, formItemId, formDescriptionId, formMessageId } =

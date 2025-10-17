@@ -24,7 +24,7 @@ export function Row1({ control }: Row1Props) {
         name="firstName"
         render={({ field, fieldState }) => (
           <FormItem>
-            <FormLabel>First Name</FormLabel>
+            <FormLabel requiredLable>First Name</FormLabel>
             <FormControl>
               <Input className="uppercase" type="text" {...field} />
             </FormControl>
@@ -67,7 +67,7 @@ export function Row1({ control }: Row1Props) {
         name="lastName"
         render={({ field, fieldState }) => (
           <FormItem>
-            <FormLabel>Last Name</FormLabel>
+            <FormLabel requiredLable>Last Name</FormLabel>
             <FormControl>
               <Input className="uppercase" type="text" {...field} />
             </FormControl>

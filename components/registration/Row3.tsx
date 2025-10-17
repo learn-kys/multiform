@@ -32,7 +32,7 @@ export function Row3({ control }: Row3Props) {
         name="email"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Email</FormLabel>
+            <FormLabel requiredLable>Email</FormLabel>
             <FormControl>
               <Input className="lowercase" type="email" {...field} />
             </FormControl>
@@ -46,7 +46,7 @@ export function Row3({ control }: Row3Props) {
         name="jobTitle"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Job Title</FormLabel>
+            <FormLabel requiredLable>Job Title</FormLabel>
             <Select value={field.value} onValueChange={field.onChange}>
               <FormControl>
                 <SelectTrigger className="w-full">
@@ -72,7 +72,7 @@ export function Row3({ control }: Row3Props) {
         name="jobId"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Job ID</FormLabel>
+            <FormLabel requiredLable>Job ID</FormLabel>
             <FormControl>
               <Input disabled type="text" {...field} />
             </FormControl>
@@ -86,7 +86,7 @@ export function Row3({ control }: Row3Props) {
         name="password"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Password</FormLabel>
+            <FormLabel requiredLable>Password</FormLabel>
             <FormControl>
               <PasswordInput {...field} />
             </FormControl>
