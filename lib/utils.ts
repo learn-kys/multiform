@@ -18,3 +18,9 @@ export function formatTime(seconds: number) {
 
   return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 }
+
+export function formatDateForInput(dateValue: string | Date) {
+  const date = new Date(dateValue);
+
+  return date.toISOString().split("T")[0];
+}
