@@ -260,6 +260,8 @@ export const candidatePersonalInfoSubmissionchema = z.object({
     .regex(/^[0-9]{6}$/, {
       error: "Invalid pincode",
     }),
+
+  sameAsPermanent: z.boolean(),
 });
 
 export type CandidatePersonalInfoSubmissionSchema = z.infer<

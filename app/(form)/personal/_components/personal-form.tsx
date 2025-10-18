@@ -8,6 +8,7 @@ import { Row1 } from "./row-1";
 import { Row2 } from "./row-2";
 import { Row3 } from "./row-3";
 import { PermanentAddress } from "./address/permanent_address";
+import { CrosspondedAddress } from "./address/crossponded_address";
 
 import {
   CandidatePersonalInfoSubmissionSchema,
@@ -53,6 +54,7 @@ export function CandidatePersonalInfoSubmissionForm({
       permanentCityOrDistrict: "",
       permanentState: "",
       permanentPincode: "",
+      sameAsPermanent: false,
     },
   });
 
@@ -88,6 +90,20 @@ export function CandidatePersonalInfoSubmissionForm({
                 <Separator />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <PermanentAddress
+                    control={form.control}
+                    setValue={form.setValue}
+                  />
+                </div>
+              </FieldSet>
+
+              <FieldSet>
+                <FieldLegend>Crossponded Address</FieldLegend>
+                <FieldDescription>
+                  Fill in your crossponded address.
+                </FieldDescription>
+                <Separator />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <CrosspondedAddress
                     control={form.control}
                     setValue={form.setValue}
                   />
