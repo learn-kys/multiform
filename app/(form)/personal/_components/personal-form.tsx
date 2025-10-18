@@ -15,6 +15,7 @@ import {
 import { formatDateForInput } from "@/lib/utils";
 import { Form } from "@/components/ui/form";
 import { FieldDescription, FieldLegend, FieldSet } from "@/components/ui/field";
+import { Separator } from "@/components/ui/separator";
 
 // Automatically infers all your custom fields (ref to ~/prg/src/advance-type-extraction.ts) file
 export type AuthSession = Awaited<ReturnType<typeof auth.api.getSession>>;
@@ -56,6 +57,7 @@ export function CandidatePersonalInfoSubmissionForm({
                 <FieldDescription>
                   Fill in your personal information.
                 </FieldDescription>
+                <Separator />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <Row1 control={form.control} />
                   <Row2 control={form.control} />
