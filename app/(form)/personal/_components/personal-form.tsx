@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Row1 } from "./row-1";
 import { Row2 } from "./row-2";
 import { Row3 } from "./row-3";
+import { CrosspondedAddress } from "./address/crossponded_address";
 
 import {
   CandidatePersonalInfoSubmissionSchema,
@@ -38,6 +39,20 @@ export function CandidatePersonalInfoSubmissionForm({
       maritalStatus: "" as any,
       nationality: "" as any,
       motherFullName: "",
+      // crossponded address
+      crosspondedAddressLine1: "",
+      crosspondedAddressLine2: "",
+      crosspondedCountry: "",
+      crosspondedCityOrDistrict: "",
+      crosspondedState: "",
+      crosspondedPincode: "",
+      // permanent address
+      permanentAddressLine1: "",
+      permanentAddressLine2: "",
+      permanentCountry: "",
+      permanentCityOrDistrict: "",
+      permanentState: "",
+      permanentPincode: "",
     },
   });
 
@@ -62,6 +77,18 @@ export function CandidatePersonalInfoSubmissionForm({
                   <Row1 control={form.control} />
                   <Row2 control={form.control} />
                   <Row3 control={form.control} />
+                </div>
+              </FieldSet>
+
+              <FieldSet>
+                <FieldLegend>Address</FieldLegend>
+                <FieldDescription>Fill in your address.</FieldDescription>
+                <Separator />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <CrosspondedAddress
+                    control={form.control}
+                    setValue={form.setValue}
+                  />
                 </div>
               </FieldSet>
             </form>

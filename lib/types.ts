@@ -208,6 +208,9 @@ export const candidatePersonalInfoSubmissionchema = z.object({
     })
     .max(6, {
       error: "Pincode must be 6 digits long",
+    })
+    .regex(/^[0-9]{6}$/, {
+      error: "Invalid pincode",
     }),
 
   permanentAddressLine1: z
@@ -253,6 +256,9 @@ export const candidatePersonalInfoSubmissionchema = z.object({
     })
     .max(6, {
       error: "Pincode must be 6 digits long",
+    })
+    .regex(/^[0-9]{6}$/, {
+      error: "Invalid pincode",
     }),
 });
 
