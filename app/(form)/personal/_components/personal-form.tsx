@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Row1 } from "./row-1";
 import { Row2 } from "./row-2";
 import { Row3 } from "./row-3";
-import { CrosspondedAddress } from "./address/crossponded_address";
+import { PermanentAddress } from "./address/permanent_address";
 
 import {
   CandidatePersonalInfoSubmissionSchema,
@@ -87,7 +87,7 @@ export function CandidatePersonalInfoSubmissionForm({
                 </FieldDescription>
                 <Separator />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <CrosspondedAddress
+                  <PermanentAddress
                     control={form.control}
                     setValue={form.setValue}
                   />

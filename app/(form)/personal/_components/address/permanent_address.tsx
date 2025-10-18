@@ -21,7 +21,7 @@ import {
 import { useStore } from "@/lib/store";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export function CrosspondedAddress({
+export function PermanentAddress({
   control,
   setValue,
 }: {
