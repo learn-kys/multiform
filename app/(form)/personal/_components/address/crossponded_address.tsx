@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useStore } from "@/lib/store";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export function CrosspondedAddress({
   control,
@@ -31,7 +32,7 @@ export function CrosspondedAddress({
   const { districts, setSelectedState } = useStore();
   const selectedState = useWatch({
     control,
-    name: "crosspondedState",
+    name: "permanentState",
   });
 
   useEffect(() => {
@@ -40,14 +41,14 @@ export function CrosspondedAddress({
 
   useEffect(() => {
     // if selectedState is changed, reset the district
-    setValue("crosspondedCityOrDistrict", "");
+    setValue("permanentCityOrDistrict", "");
   }, [selectedState, setValue]);
 
   return (
     <>
       <FormField
         control={control}
-        name="crosspondedAddressLine1"
+        name="permanentAddressLine1"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Address Line 1</FormLabel>
@@ -61,7 +62,7 @@ export function CrosspondedAddress({
 
       <FormField
         control={control}
-        name="crosspondedAddressLine2"
+        name="permanentAddressLine2"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Address Line 2</FormLabel>
@@ -75,7 +76,7 @@ export function CrosspondedAddress({
 
       <FormField
         control={control}
-        name="crosspondedCountry"
+        name="permanentCountry"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Country</FormLabel>
@@ -89,7 +90,7 @@ export function CrosspondedAddress({
 
       <FormField
         control={control}
-        name="crosspondedState"
+        name="permanentState"
         render={({ field }) => (
           <FormItem>
             <FormLabel>State</FormLabel>
@@ -114,7 +115,7 @@ export function CrosspondedAddress({
 
       <FormField
         control={control}
-        name="crosspondedCityOrDistrict"
+        name="permanentCityOrDistrict"
         render={({ field }) => (
           <FormItem>
             <FormLabel>District</FormLabel>
@@ -143,7 +144,7 @@ export function CrosspondedAddress({
 
       <FormField
         control={control}
-        name="crosspondedPincode"
+        name="permanentPincode"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Pincode</FormLabel>
@@ -160,6 +161,11 @@ export function CrosspondedAddress({
           </FormItem>
         )}
       />
+
+      <div className="flex items-center gap-2 mt-2">
+        <Checkbox />
+        <FormLabel>Same as permanent address</FormLabel>
+      </div>
     </>
   );
 }

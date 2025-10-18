@@ -81,9 +81,9 @@ export function CandidatePersonalInfoSubmissionForm({
               </FieldSet>
 
               <FieldSet>
-                <FieldLegend>Crossponded Address</FieldLegend>
+                <FieldLegend>Permanent Address</FieldLegend>
                 <FieldDescription>
-                  Fill in your crossponded address.
+                  Fill in your permanent address.
                 </FieldDescription>
                 <Separator />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
