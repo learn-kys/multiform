@@ -3,7 +3,7 @@ import * as z from "zod";
 export const genderEnum = z.enum(["Male", "Female", "Prefer Not to Say"], {
   error: "Invalid gender",
 });
-export const nationalityEnum = z.enum(["Indian", "Other"], {
+export const nationalityEnum = z.enum(["Indian"], {
   error: "Invalid selection",
 });
 export const maritalStatusEnum = z.enum(["Married", "Unmarried"], {
@@ -164,6 +164,96 @@ export const candidatePersonalInfoSubmissionchema = z.object({
   gender: genderEnum,
   maritalStatus: maritalStatusEnum,
   nationality: nationalityEnum,
+
+  crosspondedAddressLine1: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 1 is required",
+    })
+    .toUpperCase(),
+  crosspondedAddressLine2: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 2 is required",
+    })
+    .toUpperCase(),
+  crosspondedCountry: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Country is required",
+    })
+    .toUpperCase(),
+  crosspondedCityOrDistrict: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "City or district is required",
+    })
+    .toUpperCase(),
+  crosspondedState: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "State is required",
+    })
+    .toUpperCase(),
+  crosspondedPincode: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Pincode is required",
+    })
+    .max(6, {
+      error: "Pincode must be 6 digits long",
+    }),
+
+  permanentAddressLine1: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 1 is required",
+    })
+    .toUpperCase(),
+  permanentAddressLine2: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 2 is required",
+    })
+    .toUpperCase(),
+  permanentCountry: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Country is required",
+    })
+    .toUpperCase(),
+  permanentCityOrDistrict: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "City or district is required",
+    })
+    .toUpperCase(),
+  permanentState: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "State is required",
+    })
+    .toUpperCase(),
+  permanentPincode: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Pincode is required",
+    })
+    .max(6, {
+      error: "Pincode must be 6 digits long",
+    }),
 });
 
 export type CandidatePersonalInfoSubmissionSchema = z.infer<

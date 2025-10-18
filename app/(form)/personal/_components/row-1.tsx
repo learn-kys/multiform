@@ -24,7 +24,7 @@ export function Row1({
           <FormItem>
             <FormLabel requiredLable>First Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input type="text" {...field} disabled />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -38,7 +38,7 @@ export function Row1({
           <FormItem>
             <FormLabel>Middle Name</FormLabel>
             <FormControl>
-              <Input {...field} value={field.value ?? ""} />
+              <Input {...field} value={field.value ?? ""} disabled />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -52,7 +52,7 @@ export function Row1({
           <FormItem>
             <FormLabel requiredLable>Last Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input type="text" {...field} disabled />
             </FormControl>
             <FormMessage />
           </FormItem>

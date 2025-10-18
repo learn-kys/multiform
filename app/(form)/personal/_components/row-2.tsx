@@ -24,7 +24,7 @@ export function Row2({
           <FormItem>
             <FormLabel requiredLable>Father's Full Name</FormLabel>
             <FormControl>
-              <Input type="text" {...field} />
+              <Input type="text" {...field} disabled />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -52,7 +52,7 @@ export function Row2({
           <FormItem>
             <FormLabel requiredLable>Date of Birth</FormLabel>
             <FormControl>
-              <Input type="date" {...field} />
+              <Input type="date" {...field} disabled />
             </FormControl>
             <FormMessage />
           </FormItem>
