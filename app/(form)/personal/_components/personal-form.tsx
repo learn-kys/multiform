@@ -9,7 +9,7 @@ import { Row2 } from "./row-2";
 import { Row3 } from "./row-3";
 
 import {
-  candidatePersonalInfoSubmissionchema,
+  candidatePersonalInfoSubmissionSchema,
   CandidatePersonalInfoSubmissionSchema,
 } from "@/lib/types";
 import { formatDateForInput } from "@/lib/utils";
@@ -26,7 +26,7 @@ export function CandidatePersonalInfoSubmissionForm({
   user: AuthUser;
 }) {
   const form = useForm<CandidatePersonalInfoSubmissionSchema>({
-    resolver: zodResolver(candidatePersonalInfoSubmissionchema),
+    resolver: zodResolver(candidatePersonalInfoSubmissionSchema),
     defaultValues: {
       firstName: user.firstName,
       middleName: user.middleName,
@@ -34,8 +34,8 @@ export function CandidatePersonalInfoSubmissionForm({
       fatherFullName: user.fatherFullName,
       dateOfBirth: formatDateForInput(user.dateOfBirth),
       gender: "" as any,
-      isMarried: undefined,
-      nationality: "",
+      maritalStatus: "" as any,
+      nationality: "" as any,
       motherFullName: "",
     },
   });
