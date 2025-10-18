@@ -112,7 +112,7 @@ model CandidatePersonalInfo {
   PaddressCityOrDistrict  String
   PaddressState           String
   PaddressPincode         String
-  isCsameAsP              Boolean   // crossponded address same as permanent address
+  // isCsameAsP              Boolean   // crossponded address same as permanent address
   createdAt               DateTime @default(now())
   updatedAt               DateTime @default(now()) @updatedAt
 }
