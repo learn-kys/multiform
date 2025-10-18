@@ -1,14 +1,44 @@
-export default function TypographyH1() {
+"use client";
+
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
+export default function Page() {
   return (
     <div>
-      <h1>Hello world</h1>
-      <h2>User Registration</h2>
-      <h3>Hello world</h3>
-      <h4>Hello world</h4>
-      <h5>Hello world</h5>
-      <h6>Hello world</h6>
-      <p className="lead">Hello there is p tag</p>
-      <code>console.log</code>
+      <FieldSet>
+        <FieldLegend>Profile</FieldLegend>
+        <FieldDescription>
+          This appears on invoices and emails.
+        </FieldDescription>
+        <FieldGroup>
+          <Field>
+            <FieldLabel htmlFor="name">Full name</FieldLabel>
+            <Input autoComplete="off" id="name" placeholder="Evil Rabbit" />
+            <FieldDescription>
+              This appears on invoices and emails.
+            </FieldDescription>
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="username">Username</FieldLabel>
+            <Input aria-invalid autoComplete="off" id="username" />
+            <FieldError>Choose another username.</FieldError>
+          </Field>
+          <Field orientation="horizontal">
+            <FieldLabel htmlFor="newsletter">
+              Subscribe to the newsletter
+            </FieldLabel>
+          </Field>
+        </FieldGroup>
+      </FieldSet>
     </div>
   );
 }

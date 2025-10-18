@@ -1,5 +1,9 @@
 import * as z from "zod";
 
+export const genderEnum = z.enum(["Male", "Female", "Prefer Not to Say"], {
+  error: "Please select a valid gender.",
+});
+
 export const formSchema = z.object({
   firstName: z
     .string()
@@ -151,9 +155,7 @@ export const candidatePersonalInfoSubmissionchema = z.object({
       error: "Date of birth cannot be in the future",
     }),
 
-  gender: z.enum(["Male", "Female", "Other"], {
-    error: "Please select a valid gender.",
-  }),
+  gender: genderEnum,
 
   isMarried: z.boolean({
     error: "Marital status is required",
