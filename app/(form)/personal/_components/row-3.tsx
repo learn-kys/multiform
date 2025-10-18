@@ -1,6 +1,6 @@
 import { Control } from "react-hook-form";
 
-import { genderEnum, maritalStatusEnum, nationalityEnum } from "@/lib/zodTypes";
+import { genderEnum, maritalStatusEnum, nationalityEnum } from "@/lib/types";
 import {
   FormControl,
   FormMessage,

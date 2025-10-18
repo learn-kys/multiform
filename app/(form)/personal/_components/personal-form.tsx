@@ -9,8 +9,8 @@ import { Row2 } from "./row-2";
 import { Row3 } from "./row-3";
 
 import {
-  candidatePersonalInfoSubmissionSchema,
   CandidatePersonalInfoSubmissionSchema,
+  candidatePersonalInfoSubmissionchema,
 } from "@/lib/types";
 import { formatDateForInput } from "@/lib/utils";
 import { Form } from "@/components/ui/form";
@@ -27,7 +27,7 @@ export function CandidatePersonalInfoSubmissionForm({
   user: AuthUser;
 }) {
   const form = useForm<CandidatePersonalInfoSubmissionSchema>({
-    resolver: zodResolver(candidatePersonalInfoSubmissionSchema),
+    resolver: zodResolver(candidatePersonalInfoSubmissionchema),
     defaultValues: {
       firstName: user.firstName,
       middleName: user.middleName,

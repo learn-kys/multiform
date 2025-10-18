@@ -24,7 +24,7 @@ export function Row1({
           <FormItem>
             <FormLabel requiredLable>First Name</FormLabel>
             <FormControl>
-              <Input {...field} />
+              <Input type="text" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
