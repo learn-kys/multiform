@@ -11,6 +11,7 @@ import { PermanentAddress } from "./address/permanent_address";
 import { CrosspondedAddress } from "./address/crossponded_address";
 
 import {
+  CandidatePersonalInfoInput,
   CandidatePersonalInfoSubmissionSchema,
   candidatePersonalInfoSubmissionchema,
 } from "@/lib/types";
@@ -28,7 +29,11 @@ export function CandidatePersonalInfoSubmissionForm({
 }: {
   user: AuthUser;
 }) {
-  const form = useForm<CandidatePersonalInfoSubmissionSchema>({
+  const form = useForm<
+    CandidatePersonalInfoInput,
+    any,
+    CandidatePersonalInfoSubmissionSchema
+  >({
     resolver: zodResolver(candidatePersonalInfoSubmissionchema),
     defaultValues: {
       firstName: user.firstName,

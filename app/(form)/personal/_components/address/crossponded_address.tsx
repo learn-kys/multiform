@@ -1,7 +1,7 @@
 import { Control, UseFormSetValue, useWatch } from "react-hook-form";
 import { useEffect } from "react";
 
-import { CandidatePersonalInfoSubmissionSchema } from "@/lib/types";
+import { CandidatePersonalInfoInput } from "@/lib/types";
 import {
   FormField,
   FormItem,
@@ -25,8 +25,8 @@ export function CrosspondedAddress({
   control,
   setValue,
 }: {
-  control: Control<CandidatePersonalInfoSubmissionSchema>;
-  setValue: UseFormSetValue<CandidatePersonalInfoSubmissionSchema>;
+  control: Control<CandidatePersonalInfoInput>;
+  setValue: UseFormSetValue<CandidatePersonalInfoInput>;
 }) {
   const states = getStates();
   const selectedState = useWatch({
@@ -191,8 +191,8 @@ export function CrosspondedAddress({
           <FormItem>
             <FormLabel>District</FormLabel>
             <Select
-              value={field.value}
               disabled={!selectedState}
+              value={field.value}
               onValueChange={field.onChange}
             >
               <FormControl>

@@ -1,6 +1,6 @@
 import { Control } from "react-hook-form";
 
-import { CandidatePersonalInfoSubmissionSchema } from "@/lib/types";
+import { CandidatePersonalInfoInput } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -13,7 +13,7 @@ import {
 export function Row2({
   control,
 }: {
-  control: Control<CandidatePersonalInfoSubmissionSchema>;
+  control: Control<CandidatePersonalInfoInput>;
 }) {
   return (
     <>

@@ -15,12 +15,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CandidatePersonalInfoSubmissionSchema } from "@/lib/types";
+import { CandidatePersonalInfoInput } from "@/lib/types";
 
 export function Row3({
   control,
 }: {
-  control: Control<CandidatePersonalInfoSubmissionSchema>;
+  control: Control<CandidatePersonalInfoInput>;
 }) {
   return (
     <>

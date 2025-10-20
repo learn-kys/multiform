@@ -8,12 +8,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CandidatePersonalInfoSubmissionSchema } from "@/lib/types";
+import { CandidatePersonalInfoInput } from "@/lib/types";
 
 export function Row1({
   control,
 }: {
-  control: Control<CandidatePersonalInfoSubmissionSchema>;
+  control: Control<CandidatePersonalInfoInput>;
 }) {
   return (
     <>
@@ -38,7 +38,7 @@ export function Row1({
           <FormItem>
             <FormLabel>Middle Name</FormLabel>
             <FormControl>
-              <Input {...field} value={field.value ?? ""} disabled />
+              <Input {...field} disabled value={field.value ?? ""} />
             </FormControl>
             <FormMessage />
           </FormItem>

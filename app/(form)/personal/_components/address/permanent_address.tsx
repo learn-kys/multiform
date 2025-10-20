@@ -1,7 +1,7 @@
 import { Control, useWatch, UseFormSetValue } from "react-hook-form";
 import { useEffect } from "react";
 
-import { CandidatePersonalInfoSubmissionSchema } from "@/lib/types";
+import { CandidatePersonalInfoInput } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -24,8 +24,8 @@ export function PermanentAddress({
   control,
   setValue,
 }: {
-  control: Control<CandidatePersonalInfoSubmissionSchema>;
-  setValue: UseFormSetValue<CandidatePersonalInfoSubmissionSchema>;
+  control: Control<CandidatePersonalInfoInput>;
+  setValue: UseFormSetValue<CandidatePersonalInfoInput>;
 }) {
   const states = getStates();
   const selectedState = useWatch({

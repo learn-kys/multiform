@@ -103,167 +103,170 @@ export const resetPasswordSchema = z
     path: ["confirmPassword"],
   });
 
-export const candidatePersonalInfoSubmissionchema = z
-  .object({
-    firstName: z
-      .string()
-      .trim()
-      .min(1, { error: "First name is required" })
-      .min(3, { error: "First name is too short" })
-      .max(20, { error: "First name is too long" })
-      .regex(/^[A-Za-z ]+$/, { error: "First name can only contain letters" })
-      .toUpperCase(),
+const candidatePersonalInfoBaseSchema = z.object({
+  firstName: z
+    .string()
+    .trim()
+    .min(1, { error: "First name is required" })
+    .min(3, { error: "First name is too short" })
+    .max(20, { error: "First name is too long" })
+    .regex(/^[A-Za-z ]+$/, { error: "First name can only contain letters" })
+    .toUpperCase(),
 
-    middleName: z
-      .string()
-      .trim()
-      .regex(/^[A-Za-z ]*$/, { error: "Middle name can only contain letters" })
-      .toUpperCase()
-      .transform((val) => (val === "" ? null : val))
-      .nullable(),
+  middleName: z
+    .string()
+    .trim()
+    .regex(/^[A-Za-z ]*$/, { error: "Middle name can only contain letters" })
+    .toUpperCase()
+    .transform((val) => (val === "" ? null : val))
+    .nullable(),
 
-    lastName: z
-      .string()
-      .trim()
-      .min(1, { error: "Last name is required" })
-      .max(20, { error: "Last name is too long" })
-      .regex(/^[A-Za-z ]+$/, { error: "Last name can only contain letters" })
-      .toUpperCase(),
+  lastName: z
+    .string()
+    .trim()
+    .min(1, { error: "Last name is required" })
+    .max(20, { error: "Last name is too long" })
+    .regex(/^[A-Za-z ]+$/, { error: "Last name can only contain letters" })
+    .toUpperCase(),
 
-    fatherFullName: z
-      .string()
-      .trim()
-      .min(1, { error: "Father's name is required" })
-      .min(3, { error: "Father's name is too short" })
-      .max(40, { error: "Father's name is too long" })
-      .regex(/^[A-Za-z ]+$/, {
-        error: "Father's name can only contain letters",
-      })
-      .toUpperCase(),
+  fatherFullName: z
+    .string()
+    .trim()
+    .min(1, { error: "Father's name is required" })
+    .min(3, { error: "Father's name is too short" })
+    .max(40, { error: "Father's name is too long" })
+    .regex(/^[A-Za-z ]+$/, {
+      error: "Father's name can only contain letters",
+    })
+    .toUpperCase(),
 
-    motherFullName: z
-      .string()
-      .trim()
-      .min(1, { error: "Mother's name is required" })
-      .min(3, { error: "Mother's name is too short" })
-      .max(40, { error: "Mother's name is too long" })
-      .regex(/^[A-Za-z ]+$/, {
-        error: "Mother's name can only contain letters",
-      })
-      .toUpperCase(),
+  motherFullName: z
+    .string()
+    .trim()
+    .min(1, { error: "Mother's name is required" })
+    .min(3, { error: "Mother's name is too short" })
+    .max(40, { error: "Mother's name is too long" })
+    .regex(/^[A-Za-z ]+$/, {
+      error: "Mother's name can only contain letters",
+    })
+    .toUpperCase(),
 
-    dateOfBirth: z
-      .string()
-      .min(1, { error: "Date of birth is required" })
-      .refine((val) => !isNaN(Date.parse(val)), {
-        error: "Invalid date format",
-      })
-      .refine((val) => new Date(val) <= new Date(), {
-        error: "Date of birth cannot be in the future",
-      }),
+  dateOfBirth: z
+    .string()
+    .min(1, { error: "Date of birth is required" })
+    .refine((val) => !isNaN(Date.parse(val)), {
+      error: "Invalid date format",
+    })
+    .refine((val) => new Date(val) <= new Date(), {
+      error: "Date of birth cannot be in the future",
+    }),
 
-    gender: genderEnum,
-    maritalStatus: maritalStatusEnum,
-    nationality: nationalityEnum,
+  gender: genderEnum,
+  maritalStatus: maritalStatusEnum,
+  nationality: nationalityEnum,
 
-    crosspondedAddressLine1: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Address line 1 is required",
-      })
-      .toUpperCase(),
-    crosspondedAddressLine2: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Address line 2 is required",
-      })
-      .toUpperCase(),
-    crosspondedCountry: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Country is required",
-      })
-      .toUpperCase(),
-    crosspondedCityOrDistrict: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "City or district is required",
-      })
-      .toUpperCase(),
-    crosspondedState: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "State is required",
-      })
-      .toUpperCase(),
-    crosspondedPincode: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Pincode is required",
-      })
-      .max(6, {
-        error: "Pincode must be 6 digits long",
-      })
-      .regex(/^[0-9]{6}$/, {
-        error: "Invalid pincode",
-      }),
+  crosspondedAddressLine1: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 1 is required",
+    })
+    .toUpperCase(),
+  crosspondedAddressLine2: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 2 is required",
+    })
+    .toUpperCase(),
+  crosspondedCountry: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Country is required",
+    })
+    .toUpperCase(),
+  crosspondedCityOrDistrict: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "City or district is required",
+    })
+    .toUpperCase(),
+  crosspondedState: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "State is required",
+    })
+    .toUpperCase(),
+  crosspondedPincode: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Pincode is required",
+    })
+    .max(6, {
+      error: "Pincode must be 6 digits long",
+    })
+    .regex(/^[0-9]{6}$/, {
+      error: "Invalid pincode",
+    }),
 
-    permanentAddressLine1: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Address line 1 is required",
-      })
-      .toUpperCase(),
-    permanentAddressLine2: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Address line 2 is required",
-      })
-      .toUpperCase(),
-    permanentCountry: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Country is required",
-      })
-      .toUpperCase(),
-    permanentCityOrDistrict: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "City or district is required",
-      })
-      .toUpperCase(),
-    permanentState: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "State is required",
-      })
-      .toUpperCase(),
-    permanentPincode: z
-      .string()
-      .trim()
-      .min(1, {
-        error: "Pincode is required",
-      })
-      .max(6, {
-        error: "Pincode must be 6 digits long",
-      })
-      .regex(/^[0-9]{6}$/, {
-        error: "Invalid pincode",
-      }),
-  })
-  .transform((data) => {
-    const { maritalStatus, ...rest } = data; // remove maritalStatus from rest
+  permanentAddressLine1: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 1 is required",
+    })
+    .toUpperCase(),
+  permanentAddressLine2: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Address line 2 is required",
+    })
+    .toUpperCase(),
+  permanentCountry: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Country is required",
+    })
+    .toUpperCase(),
+  permanentCityOrDistrict: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "City or district is required",
+    })
+    .toUpperCase(),
+  permanentState: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "State is required",
+    })
+    .toUpperCase(),
+  permanentPincode: z
+    .string()
+    .trim()
+    .min(1, {
+      error: "Pincode is required",
+    })
+    .max(6, {
+      error: "Pincode must be 6 digits long",
+    })
+    .regex(/^[0-9]{6}$/, {
+      error: "Invalid pincode",
+    }),
+
+  sameAsPermanent: z.boolean(),
+});
+
+export const candidatePersonalInfoSubmissionchema =
+  candidatePersonalInfoBaseSchema.transform((data) => {
+    const { maritalStatus, ...rest } = data;
 
     return {
       ...rest,
@@ -271,6 +274,9 @@ export const candidatePersonalInfoSubmissionchema = z
     };
   });
 
+export type CandidatePersonalInfoInput = z.infer<
+  typeof candidatePersonalInfoBaseSchema
+>;
 export type CandidatePersonalInfoSubmissionSchema = z.infer<
   typeof candidatePersonalInfoSubmissionchema
 >;
