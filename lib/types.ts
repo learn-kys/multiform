@@ -265,14 +265,10 @@ const candidatePersonalInfoBaseSchema = z.object({
 });
 
 export const candidatePersonalInfoSubmissionchema =
-  candidatePersonalInfoBaseSchema.transform((data) => {
-    const { maritalStatus, ...rest } = data;
-
-    return {
-      ...rest,
-      isMarried: maritalStatus === "Married",
-    };
-  });
+  candidatePersonalInfoBaseSchema.transform((data) => ({
+    ...data,
+    isMarried: data.maritalStatus === "Married",
+  }));
 
 export type CandidatePersonalInfoInput = z.infer<
   typeof candidatePersonalInfoBaseSchema
