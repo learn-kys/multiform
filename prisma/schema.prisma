@@ -98,8 +98,7 @@ model CandidatePersonalInfo {
   domicileCertificateIssueDate DateTime
   haveDisability          Boolean
   markOfVisibleIdentification String
-  havePanCard             Boolean
-  haveVoterId             Boolean
+  documentToUpload        String
   CaddressLine1           String
   CaddressLine2           String?
   Ccountry                String
