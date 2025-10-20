@@ -88,10 +88,12 @@ model CandidatePersonalInfo {
   id                      String           @id @map("_id")
   userId                  String
   user                    User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // personal information 
   gender                  String
   isMarried               Boolean
   motherFullName          String
   nationality             String
+  // additional information
   domicileOfState         String
   domicileCertificateIssuingAuthority String
   domicileCertificateNumber String
@@ -99,19 +101,21 @@ model CandidatePersonalInfo {
   haveDisability          Boolean
   markOfVisibleIdentification String
   documentToUpload        String
+  // crossponded address information
   CaddressLine1           String
   CaddressLine2           String?
   Ccountry                String
   CaddressCityOrDistrict  String
   CaddressState           String
   CaddressPincode         String
+  // permanent address information
   PaddressLine1           String
   PaddressLine2           String?
   Pcountry                String
   PaddressCityOrDistrict  String
   PaddressState           String
   PaddressPincode         String
-  // isCsameAsP              Boolean   // crossponded address same as permanent address
+  // timestamps
   createdAt               DateTime @default(now())
   updatedAt               DateTime @default(now()) @updatedAt
 }
