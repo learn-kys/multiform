@@ -29,7 +29,7 @@ export function Row3({
         name="gender"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Gender</FormLabel>
+            <FormLabel requiredLable>Gender</FormLabel>
             <Select defaultValue={field.value} onValueChange={field.onChange}>
               <FormControl>
                 <SelectTrigger className="w-full">
@@ -54,7 +54,7 @@ export function Row3({
         name="maritalStatus"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Martial Status</FormLabel>
+            <FormLabel requiredLable>Martial Status</FormLabel>
             <Select defaultValue={field.value} onValueChange={field.onChange}>
               <FormControl>
                 <SelectTrigger className="w-full">
@@ -79,7 +79,7 @@ export function Row3({
         name="nationality"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Nationality</FormLabel>
+            <FormLabel requiredLable>Nationality</FormLabel>
             <Select defaultValue={field.value} onValueChange={field.onChange}>
               <FormControl>
                 <SelectTrigger className="w-full">

@@ -122,7 +122,7 @@ export function CrosspondedAddress({
         name="crosspondedAddressLine1"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Address Line 1</FormLabel>
+            <FormLabel requiredLable>Address Line 1</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -150,10 +150,23 @@ export function CrosspondedAddress({
         name="crosspondedCountry"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Country</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
+            <FormLabel requiredLable>Country</FormLabel>
+            <Select
+              defaultValue={field.value}
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <FormControl>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                <SelectItem key={"India"} value={"India"}>
+                  India
+                </SelectItem>
+              </SelectContent>
+            </Select>
             <FormMessage />
           </FormItem>
         )}
@@ -164,8 +177,12 @@ export function CrosspondedAddress({
         name="crosspondedState"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>State</FormLabel>
-            <Select value={field.value} onValueChange={field.onChange}>
+            <FormLabel requiredLable>State</FormLabel>
+            <Select
+              defaultValue={field.value}
+              value={field.value}
+              onValueChange={field.onChange}
+            >
               <FormControl>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select a state" />
@@ -189,7 +206,7 @@ export function CrosspondedAddress({
         name="crosspondedCityOrDistrict"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>District</FormLabel>
+            <FormLabel requiredLable>District</FormLabel>
             <Select
               disabled={!selectedState}
               value={field.value}
@@ -218,7 +235,7 @@ export function CrosspondedAddress({
         name="crosspondedPincode"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Pincode</FormLabel>
+            <FormLabel requiredLable>Pincode</FormLabel>
             <FormControl>
               <Input
                 inputMode="numeric"

@@ -36,7 +36,7 @@ export function Row2({
         name="motherFullName"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Mother's Full Name</FormLabel>
+            <FormLabel requiredLable>Mother's Full Name</FormLabel>
             <FormControl>
               <Input type="text" {...field} />
             </FormControl>

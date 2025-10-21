@@ -46,7 +46,7 @@ export function PermanentAddress({
         name="permanentAddressLine1"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Address Line 1</FormLabel>
+            <FormLabel requiredLable>Address Line 1</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -74,10 +74,23 @@ export function PermanentAddress({
         name="permanentCountry"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Country</FormLabel>
-            <FormControl>
-              <Input {...field} />
-            </FormControl>
+            <FormLabel requiredLable>Country</FormLabel>
+            <Select
+              defaultValue={field.value}
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <FormControl>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                <SelectItem key={"India"} value={"India"}>
+                  India
+                </SelectItem>
+              </SelectContent>
+            </Select>
             <FormMessage />
           </FormItem>
         )}
@@ -88,7 +101,7 @@ export function PermanentAddress({
         name="permanentState"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>State</FormLabel>
+            <FormLabel requiredLable>State</FormLabel>
             <Select defaultValue={field.value} onValueChange={field.onChange}>
               <FormControl>
                 <SelectTrigger className="w-full">
@@ -113,7 +126,7 @@ export function PermanentAddress({
         name="permanentCityOrDistrict"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>District</FormLabel>
+            <FormLabel requiredLable>District</FormLabel>
             <Select
               disabled={!selectedState}
               value={field.value}
@@ -142,7 +155,7 @@ export function PermanentAddress({
         name="permanentPincode"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Pincode</FormLabel>
+            <FormLabel requiredLable>Pincode</FormLabel>
             <FormControl>
               <Input
                 inputMode="numeric"

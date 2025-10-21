@@ -39,7 +39,7 @@ export function AdditionalInformation({
         name="domicileOfState"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Domicile of State</FormLabel>
+            <FormLabel requiredLable>Domicile of State</FormLabel>
             <Select
               defaultValue={field.value}
               value={field.value}
@@ -68,7 +68,9 @@ export function AdditionalInformation({
         name="domicileCertificateIssuingAuthority"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Domicile Certificate Issuing Authority</FormLabel>
+            <FormLabel requiredLable>
+              Domicile Certificate Issuing Authority
+            </FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -82,7 +84,7 @@ export function AdditionalInformation({
         name="domicileCertificateNumber"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Domicile Certificate Number</FormLabel>
+            <FormLabel requiredLable>Domicile Certificate Number</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -96,7 +98,7 @@ export function AdditionalInformation({
         name="domicileCertificateIssueDate"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Domicile Certificate Issue Date</FormLabel>
+            <FormLabel requiredLable>Domicile Certificate Issue Date</FormLabel>
             <FormControl>
               <Input type="date" {...field} />
             </FormControl>
@@ -110,7 +112,7 @@ export function AdditionalInformation({
         name="documentToUpload"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Document To Upload</FormLabel>
+            <FormLabel requiredLable>Document To Upload</FormLabel>
             <Select
               defaultValue={field.value}
               value={field.value}
@@ -146,7 +148,7 @@ export function AdditionalInformation({
                   checked={field.value ?? false}
                   onCheckedChange={field.onChange}
                 />
-                <FormLabel>Do have Disability?</FormLabel>
+                <FormLabel>Do you have Disability?</FormLabel>
               </div>
             </FormControl>
             <FormMessage />
@@ -161,8 +163,8 @@ export function AdditionalInformation({
             <FormItem>
               <FormLabel>Disability Type</FormLabel>
               <Select
-                defaultValue={field.value}
-                value={field.value}
+                defaultValue={field.value ?? ""}
+                value={field.value ?? ""}
                 onValueChange={field.onChange}
               >
                 <FormControl>
@@ -189,7 +191,7 @@ export function AdditionalInformation({
         name="markOfVisibleIdentification"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Mark of Visible Identification</FormLabel>
+            <FormLabel requiredLable>Mark of Visible Identification</FormLabel>
             <FormControl>
               <Input
                 placeholder="Any visible mark"

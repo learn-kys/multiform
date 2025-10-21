@@ -279,7 +279,7 @@ const candidatePersonalInfoBaseSchema = z.object({
       error: "Invalid pincode",
     }),
 
-  sameAsPermanent: z.boolean(),
+  sameAsPermanent: z.boolean().default(false),
 
   // additional information
 
@@ -304,8 +304,8 @@ const candidatePersonalInfoBaseSchema = z.object({
     .refine((val) => new Date(val) <= new Date(), {
       error: "Issue date cannot be in the future",
     }),
-  haveDisability: z.boolean().nullable(),
-  disabilityType: disabilityTypeEnum,
+  haveDisability: z.boolean().default(false),
+  disabilityType: disabilityTypeEnum.nullable(),
   markOfVisibleIdentification: z.string().trim().nullable(),
   documentToUpload: documentTypeEnum,
 });
