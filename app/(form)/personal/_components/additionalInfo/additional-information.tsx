@@ -162,11 +162,7 @@ export function AdditionalInformation({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Disability Type</FormLabel>
-              <Select
-                defaultValue={field.value ?? ""}
-                value={field.value ?? ""}
-                onValueChange={field.onChange}
-              >
+              <Select value={field.value ?? ""} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select Disability Type" />

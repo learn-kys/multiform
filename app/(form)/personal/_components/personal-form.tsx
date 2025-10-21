@@ -13,13 +13,14 @@ import { AdditionalInformation } from "./additionalInfo/additional-information";
 
 import {
   CandidatePersonalInfoInput,
+  candidatePersonalInfoSubmissionSchema,
   CandidatePersonalInfoSubmissionSchema,
-  candidatePersonalInfoSubmissionchema,
 } from "@/lib/types";
 import { formatDateForInput } from "@/lib/utils";
 import { Form } from "@/components/ui/form";
 import { FieldDescription, FieldLegend, FieldSet } from "@/components/ui/field";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 
 // Automatically infers all your custom fields (ref to ~/prg/src/advance-type-extraction.ts) file
 export type AuthSession = Awaited<ReturnType<typeof auth.api.getSession>>;
@@ -28,14 +29,14 @@ export type AuthUser = NonNullable<AuthSession>["user"]; // it simply remove nul
 export function CandidatePersonalInfoSubmissionForm({
   user,
 }: {
-  user: AuthUser;
+  user: AuthUser; // Assuming AuthUser matches the base schema for default values
 }) {
   const form = useForm<
     CandidatePersonalInfoInput,
     any,
     CandidatePersonalInfoSubmissionSchema
   >({
-    resolver: zodResolver(candidatePersonalInfoSubmissionchema),
+    resolver: zodResolver(candidatePersonalInfoSubmissionSchema),
     defaultValues: {
       firstName: user.firstName,
       middleName: user.middleName,
@@ -67,7 +68,7 @@ export function CandidatePersonalInfoSubmissionForm({
       domicileCertificateNumber: "",
       domicileCertificateIssueDate: "",
       haveDisability: false,
-      disabilityType: "" as any,
+      disabilityType: null,
       markOfVisibleIdentification: "",
       documentToUpload: "" as any,
     },
@@ -84,6 +85,23 @@ export function CandidatePersonalInfoSubmissionForm({
         <div className="">
           <Form {...form}>
             <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+              {/* Display all form errors for debugging */}
+              {/* {Object.keys(form.formState.errors).length > 0 && (
+                <div className="bg-destructive/10 border border-destructive/50 text-destructive p-4 rounded-md">
+                  <h3 className="font-medium">
+                    Please fix the following errors:
+                  </h3>
+                  <ul className="list-disc list-inside mt-2">
+                    {Object.entries(form.formState.errors).map(
+                      ([fieldName, error]) => (
+                        <li key={fieldName}>
+                          {fieldName}: {error.message}
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+              )} */}
               <FieldSet>
                 <FieldLegend>Personal Information</FieldLegend>
                 <FieldDescription>
@@ -135,6 +153,8 @@ export function CandidatePersonalInfoSubmissionForm({
                   <AdditionalInformation control={form.control} />
                 </div>
               </FieldSet>
+
+              <Button type="submit">Submit</Button>
             </form>
           </Form>
         </div>

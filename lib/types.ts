@@ -279,7 +279,7 @@ const candidatePersonalInfoBaseSchema = z.object({
       error: "Invalid pincode",
     }),
 
-  sameAsPermanent: z.boolean().default(false),
+  sameAsPermanent: z.boolean(),
 
   // additional information
 
@@ -304,13 +304,13 @@ const candidatePersonalInfoBaseSchema = z.object({
     .refine((val) => new Date(val) <= new Date(), {
       error: "Issue date cannot be in the future",
     }),
-  haveDisability: z.boolean().default(false),
+  haveDisability: z.boolean(),
   disabilityType: disabilityTypeEnum.nullable(),
-  markOfVisibleIdentification: z.string().trim().nullable(),
+  markOfVisibleIdentification: z.string().trim(),
   documentToUpload: documentTypeEnum,
 });
 
-export const candidatePersonalInfoSubmissionchema =
+export const candidatePersonalInfoSubmissionSchema =
   candidatePersonalInfoBaseSchema.transform((data) => ({
     ...data,
     isMarried: data.maritalStatus === "Married",
@@ -320,7 +320,7 @@ export type CandidatePersonalInfoInput = z.infer<
   typeof candidatePersonalInfoBaseSchema
 >;
 export type CandidatePersonalInfoSubmissionSchema = z.infer<
-  typeof candidatePersonalInfoSubmissionchema
+  typeof candidatePersonalInfoSubmissionSchema
 >;
 export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
 export type ForgetPasswordSchema = z.infer<typeof forgetPasswordSchema>;
