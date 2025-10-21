@@ -67,7 +67,7 @@ export function CandidatePersonalInfoSubmissionForm({
       domicileCertificateIssuingAuthority: "",
       domicileCertificateNumber: "",
       domicileCertificateIssueDate: "",
-      haveDisability: false,
+      haveDisability: undefined,
       disabilityType: null,
       markOfVisibleIdentification: "",
       documentToUpload: "" as any,

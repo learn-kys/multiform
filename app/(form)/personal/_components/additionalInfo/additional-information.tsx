@@ -18,7 +18,6 @@ import {
 import { getStates } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { documentTypeEnum } from "@/lib/types";
-import { Checkbox } from "@/components/ui/checkbox";
 
 export function AdditionalInformation({
   control,
@@ -31,6 +30,8 @@ export function AdditionalInformation({
     control,
     name: "haveDisability",
   });
+
+  console.log(haveDisability);
 
   return (
     <>
@@ -136,7 +137,7 @@ export function AdditionalInformation({
         )}
       />
 
-      <FormField
+      {/* <FormField
         control={control}
         name="haveDisability"
         render={({ field }) => (
@@ -154,7 +155,30 @@ export function AdditionalInformation({
             <FormMessage />
           </FormItem>
         )}
+      /> */}
+
+      <FormField
+        control={control}
+        name="haveDisability"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Do you have Disability?</FormLabel>
+            {/* convert string to boolean */}
+            <Select onValueChange={(val) => field.onChange(val === "true")}>
+              <FormControl>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Disability Type" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                <SelectItem value="true">Yes</SelectItem>
+                <SelectItem value="false">No</SelectItem>
+              </SelectContent>
+            </Select>
+          </FormItem>
+        )}
       />
+
       {haveDisability && (
         <FormField
           control={control}

@@ -304,7 +304,7 @@ const candidatePersonalInfoBaseSchema = z.object({
     .refine((val) => new Date(val) <= new Date(), {
       error: "Issue date cannot be in the future",
     }),
-  haveDisability: z.boolean(),
+  haveDisability: z.boolean({ error: "Disability status is required" }),
   disabilityType: disabilityTypeEnum.nullable(),
   markOfVisibleIdentification: z.string().trim(),
   documentToUpload: documentTypeEnum,
