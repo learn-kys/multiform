@@ -9,6 +9,7 @@ import { Row2 } from "./row-2";
 import { Row3 } from "./row-3";
 import { PermanentAddress } from "./address/permanent_address";
 import { CrosspondedAddress } from "./address/crossponded_address";
+import { AdditionalInformation } from "./additionalInfo/additional-information";
 
 import {
   CandidatePersonalInfoInput,
@@ -60,6 +61,15 @@ export function CandidatePersonalInfoSubmissionForm({
       permanentState: "",
       permanentPincode: "",
       sameAsPermanent: false,
+      // additional information
+      domicileOfState: "",
+      domicileCertificateIssuingAuthority: "",
+      domicileCertificateNumber: "",
+      domicileCertificateIssueDate: "",
+      haveDisability: false,
+      disabilityType: "",
+      markOfVisibleIdentification: "",
+      documentToUpload: "" as any,
     },
   });
 
@@ -112,6 +122,17 @@ export function CandidatePersonalInfoSubmissionForm({
                     control={form.control}
                     setValue={form.setValue}
                   />
+                </div>
+              </FieldSet>
+
+              <FieldSet>
+                <FieldLegend>Additional Information</FieldLegend>
+                <FieldDescription>
+                  Fill in your additional information.
+                </FieldDescription>
+                <Separator />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <AdditionalInformation control={form.control} />
                 </div>
               </FieldSet>
             </form>

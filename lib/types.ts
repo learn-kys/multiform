@@ -9,6 +9,9 @@ export const nationalityEnum = z.enum(["Indian"], {
 export const maritalStatusEnum = z.enum(["Married", "Unmarried"], {
   error: "Invalid selection",
 });
+export const documentTypeEnum = z.enum(["Aadhar Card", "Voter ID"], {
+  error: "Invalid selection",
+});
 
 export const formSchema = z.object({
   firstName: z
@@ -262,6 +265,34 @@ const candidatePersonalInfoBaseSchema = z.object({
     }),
 
   sameAsPermanent: z.boolean(),
+
+  // additional information
+
+  domicileOfState: z.string().trim().min(1, { error: "State is required" }),
+  domicileCertificateIssuingAuthority: z
+    .string()
+    .trim()
+    .min(1, { error: "Issuing authority is required" })
+    .toUpperCase(),
+  domicileCertificateNumber: z
+    .string()
+    .trim()
+    .min(1, { error: "Certificate number is required" })
+    .toUpperCase(),
+  domicileCertificateIssueDate: z
+    .string()
+    .trim()
+    .min(1, { error: "Issue date is required" })
+    .refine((val) => !isNaN(Date.parse(val)), {
+      error: "Invalid date format",
+    })
+    .refine((val) => new Date(val) <= new Date(), {
+      error: "Issue date cannot be in the future",
+    }),
+  haveDisability: z.boolean().nullable(),
+  disabilityType: z.string().trim().nullable(),
+  markOfVisibleIdentification: z.string().trim().nullable(),
+  documentToUpload: documentTypeEnum,
 });
 
 export const candidatePersonalInfoSubmissionchema =

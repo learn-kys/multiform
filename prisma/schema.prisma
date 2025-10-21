@@ -99,6 +99,7 @@ model CandidatePersonalInfo {
   domicileCertificateNumber String
   domicileCertificateIssueDate DateTime
   haveDisability          Boolean
+  disabilityType          String?
   markOfVisibleIdentification String
   documentToUpload        String
   // crossponded address information
