@@ -13,6 +13,21 @@ export const documentTypeEnum = z.enum(["Aadhar Card", "Voter ID"], {
   error: "Invalid selection",
 });
 
+export const disabilityTypeEnum = z.enum(
+  [
+    "Physical",
+    "Blind",
+    "Deaf & Dumb",
+    "Mentally Challenged",
+    "Orthopaedic Impairment",
+    "Multiple Impairments",
+    "Other",
+  ],
+  {
+    error: "Invalid selection",
+  },
+);
+
 export const formSchema = z.object({
   firstName: z
     .string()
@@ -290,7 +305,7 @@ const candidatePersonalInfoBaseSchema = z.object({
       error: "Issue date cannot be in the future",
     }),
   haveDisability: z.boolean().nullable(),
-  disabilityType: z.string().trim().nullable(),
+  disabilityType: disabilityTypeEnum,
   markOfVisibleIdentification: z.string().trim().nullable(),
   documentToUpload: documentTypeEnum,
 });
