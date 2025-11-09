@@ -100,7 +100,7 @@ function FormLabel({
   return (
     <Label
       className={cn(
-        "data-[error=true]:text-destructive inline-flex items-baseline gap-0.5",
+        "data-[error=true]:text-destructive inline-flex items-baseline gap-0.5", // "inline-flex items-baseline gap-0.5" added on classname, also form-required classname have define css in global.css
         className,
       )}
       data-error={!!error}
@@ -109,8 +109,8 @@ function FormLabel({
       {...props}
     >
       <span className="leading-none">{children}</span>
-      {requiredLable && <span className="form-required">*</span>}
-    </Label>
+      {requiredLable && <span className="form-required">*</span>}  
+    </Label> 
   );
 }
 
